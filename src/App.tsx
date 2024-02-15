@@ -1,4 +1,3 @@
-import React from 'react'
 import { ErrorPage } from './components/ErrorPage'
 import { SuccessPage } from './components/SuccessPage'
 import { ImagePreview } from './components/ImagePreview'
@@ -6,38 +5,34 @@ import { Camera } from './components/Camera'
 import { CameraPermissionPage } from './components/CameraPermissionPage'
 import { LandingPage } from './components/LandingPage/LandingPage'
 import { ApiKeyPage } from './components/ApiKeyPage'
+import { usePage } from './providers/PageProvider'
 
 type PageKeys =
-  | 'landing-page'
-  | 'camera-permission'
+  | 'landingPage'
+  | 'cameraPermission'
   | 'camera'
-  | 'api-key-form'
-  | 'image-preview'
+  | 'apiKeyForm'
+  | 'imagePreview'
   | 'success'
   | 'error'
 
 const PAGES: Record<PageKeys, any> = {
-  'landing-page': LandingPage,
-  'camera-permission': CameraPermissionPage,
+  landingPage: LandingPage,
+  cameraPermission: CameraPermissionPage,
   camera: Camera,
-  'api-key-form': ApiKeyPage,
-  'image-preview': ImagePreview,
+  apiKeyForm: ApiKeyPage,
+  imagePreview: ImagePreview,
   success: SuccessPage,
   error: ErrorPage,
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = React.useState<PageKeys>('landing-page')
+  const { currentPage } = usePage()
+  console.log('currentPage', currentPage)
 
   const Page = PAGES[currentPage]
 
-  return (
-    <Page
-      onNavigate={(page: PageKeys) => {
-        setCurrentPage(page)
-      }}
-    />
-  )
+  return <Page />
 }
 
 export default App
