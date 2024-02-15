@@ -1,6 +1,6 @@
 import React from 'react'
 
-type PageKey =
+export type PageKey =
   | 'landingPage'
   | 'cameraPermission'
   | 'camera'
@@ -9,15 +9,21 @@ type PageKey =
   | 'success'
   | 'error'
 
-type PageValue = { currentPage: PageKey; navigate: (arg0: PageKey) => void }
+export type Page = {
+  type: PageKey
+  props: Object
+}
+
+type PageValue = { currentPage: Page; navigate: (arg0: PageKey, arg1?: any) => void }
 
 const PageContext = React.createContext<PageValue | undefined>(undefined)
 
 export function PageProvider({ children }: React.PropsWithChildren) {
-  const [currentPage, setCurrentPage] = React.useState<PageKey>('landingPage')
+  const [currentPage, setCurrentPage] = React.useState<Page>({ type: 'camera', props: {} })
   console.log('currentPage in Provider', currentPage)
-  function navigate(page: PageKey) {
-    setCurrentPage(page)
+
+  function navigate(page: PageKey, props: any = {}) {
+    setCurrentPage({ type: page, props })
   }
 
   return <PageContext.Provider value={{ currentPage, navigate }}>{children}</PageContext.Provider>
