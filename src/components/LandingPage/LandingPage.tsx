@@ -26,6 +26,7 @@ export function LandingPage() {
         </p>
       </div>
       <button
+        className={styles.btn}
         onClick={() => {
           navigate(apiKey ? 'camera' : 'apiKeyForm')
           // console.log(apiKey ? 'Key provided' : 'No key provided')

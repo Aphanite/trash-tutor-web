@@ -1,20 +1,21 @@
 import React from 'react'
-import { isValid } from '../../helpers/keyHelpers'
 import styles from './ApiKeyPage.module.css'
-import key from '../../assets/images/key.png'
+import keyImg from '../../assets/images/key.png'
+import { usePage } from '../../providers/PageProvider'
+import { isValid } from '../../helpers/keyHelpers'
 
-export function ApiKeyPage() {
+function ApiKeyPage() {
   const [apiKey, setApiKey] = React.useState('')
-
   const textInputRef = React.useRef(null)
+
+  const { navigate } = usePage()
 
   const showError = apiKey.length > 0 && !isValid(apiKey)
 
   function handleSubmit(e: any) {
     e.preventDefault()
-
     window.localStorage.setItem('openAIKey', apiKey)
-    // TO DO: implement accessing camera/camera permission
+    navigate('camera')
   }
 
   return (
@@ -25,7 +26,7 @@ export function ApiKeyPage() {
             width: 124,
             height: 61,
           }}
-          src={key}
+          src={keyImg}
         />
 
         <h2 className={styles.title}>OpenAI Key</h2>
@@ -48,9 +49,11 @@ export function ApiKeyPage() {
         {showError && <span className={styles.errorMsg}>Invalid format</span>}
       </div>
 
-      <button type="submit" {...(!isValid(apiKey) && { disabled: true })}>
+      <button type="submit" {...(!isValid(apiKey) && { disabled: true })} className={styles.btn}>
         Save and Scan
       </button>
     </form>
   )
 }
+
+export default ApiKeyPage
