@@ -20,7 +20,7 @@ function Camera() {
 
     const uri = canvas.toDataURL('image/png')
     console.log('data', uri)
-    navigate('landingPage', { uri })
+    navigate('imagePreview', { uri })
   }
 
   React.useEffect(() => {

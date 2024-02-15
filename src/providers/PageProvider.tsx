@@ -14,12 +14,12 @@ export type Page = {
   props: Object
 }
 
-type PageValue = { currentPage: Page; navigate: (arg0: PageKey, arg1?: any) => void }
+type PageValue = { currentPage: Page; navigate: (page: PageKey, props?: any) => void }
 
 const PageContext = React.createContext<PageValue | undefined>(undefined)
 
 export function PageProvider({ children }: React.PropsWithChildren) {
-  const [currentPage, setCurrentPage] = React.useState<Page>({ type: 'camera', props: {} })
+  const [currentPage, setCurrentPage] = React.useState<Page>({ type: 'landingPage', props: {} })
   console.log('currentPage in Provider', currentPage)
 
   function navigate(page: PageKey, props: any = {}) {
