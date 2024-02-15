@@ -1,9 +1,9 @@
-import { useKey } from '../../hooks/useKey'
 import styles from './LandingPage.module.css'
 import leaves from '../../assets/images/leaves.png'
 
 export function LandingPage({ onNavigate }: { onNavigate: any }) {
-  const apiKey = useKey()
+  const apiKey = window.localStorage.getItem('openAIKey')
+  console.log('apiKey', apiKey)
 
   return (
     <div className={styles.container}>
@@ -26,6 +26,7 @@ export function LandingPage({ onNavigate }: { onNavigate: any }) {
       <button
         className={styles.button}
         onClick={() => {
+          onNavigate
           console.log(apiKey ? 'Key provided' : 'No key provided')
         }}
       >
