@@ -17,6 +17,7 @@ export function KeyProvider({ children }: React.PropsWithChildren) {
 
   return <KeyContext.Provider value={{ key, updateKey }}>{children}</KeyContext.Provider>
 }
+
 export function useKey() {
   const page = React.useContext(KeyContext)
   if (page === undefined) {
