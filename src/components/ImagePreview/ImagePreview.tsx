@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './ImagePreview.module.css'
+
+import { RotateCcw, Check } from 'react-feather'
 // import { useLocation } from '../../providers/LocationProvider'
-// import { LoadingDots } from '../LoadingDots'
 // import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 // import { classifyImage } from '../../services/classifyImage'
 // import { categorizeWaste } from '../../services/categorizeWaste'
@@ -78,13 +79,18 @@ export function ImagePreview({ uri }: { uri: string }) {
       }}
     >
       <div className={`${styles.buttonContainer} ${loading && styles.loading}`}>
-        {!loading && (
+        {loading ? (
+          <div className={styles.loader}></div>
+        ) : (
           <>
-            <button className={styles.iconBtn}>Redo</button>
-            <button className={`${styles.iconBtn} ${styles.primary}`}>Scan</button>
+            <button className={styles.iconBtn}>
+              <RotateCcw size={14} />
+            </button>
+            <button className={`${styles.iconBtn} ${styles.primary}`}>
+              <Check size={16} />
+            </button>
           </>
         )}
-        {/* {loading && <LoadingDots />} */}
       </div>
     </div>
   )
