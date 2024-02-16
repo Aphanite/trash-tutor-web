@@ -22,8 +22,6 @@ function App() {
     currentPage: { type, props },
   } = usePage()
 
-  console.log('currentPage', type)
-
   const Page = PAGES[type]
 
   return <Page {...props} />

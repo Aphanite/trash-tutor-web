@@ -3,18 +3,21 @@ import styles from './ApiKeyPage.module.css'
 import keyImg from '../../assets/images/key.png'
 import { usePage } from '../../providers/PageProvider'
 import { isValid } from '../../helpers/keyHelpers'
+import { useKey } from '../../providers/KeyProvider'
 
 function ApiKeyPage() {
   const [apiKey, setApiKey] = React.useState('')
   const textInputRef = React.useRef(null)
 
+  const { updateKey } = useKey()
   const { navigate } = usePage()
 
   const showError = apiKey.length > 0 && !isValid(apiKey)
 
   function handleSubmit(e: any) {
     e.preventDefault()
-    window.localStorage.setItem('openAIKey', apiKey)
+
+    updateKey(apiKey)
     navigate('camera')
   }
 

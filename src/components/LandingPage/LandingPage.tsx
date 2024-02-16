@@ -1,11 +1,11 @@
 import styles from './LandingPage.module.css'
 import leaves from '../../assets/images/leaves.png'
 import { usePage } from '../../providers/PageProvider'
+import { useKey } from '../../providers/KeyProvider'
 
 export function LandingPage() {
   const { navigate } = usePage()
-  const apiKey = window.localStorage.getItem('openAIKey')
-  console.log('apiKey', apiKey)
+  const { key } = useKey()
 
   return (
     <div className={styles.container}>
@@ -28,7 +28,7 @@ export function LandingPage() {
       <button
         className={styles.btn}
         onClick={() => {
-          navigate(apiKey ? 'camera' : 'apiKeyForm')
+          navigate(key ? 'camera' : 'apiKeyForm')
         }}
       >
         Start

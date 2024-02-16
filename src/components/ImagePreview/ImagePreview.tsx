@@ -3,13 +3,14 @@ import styles from './ImagePreview.module.css'
 
 import { RotateCcw, Check } from 'react-feather'
 import { useLocation } from '../../providers/LocationProvider'
+import { useKey } from '../../providers/KeyProvider'
 // import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 // import { classifyImage } from '../../services/classifyImage'
 // import { categorizeWaste } from '../../services/categorizeWaste'
 
 export function ImagePreview({ uri }: { uri: string }) {
   const location = useLocation() || 'Berlin, Germany'
-  // const key = useKey()
+  const { key } = useKey()
 
   // const { getCategoriesForLocation, saveCategoriesForLocation } = useWasteContext()
   console.log('location', location)
