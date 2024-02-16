@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './ApiKeyPage.module.css'
 import keyImg from '../../assets/images/key.png'
 import { usePage } from '../../providers/PageProvider'
-import { isValid, useKey } from '../../providers/KeyProvider'
+import { useKey } from '../../providers/KeyProvider'
 
 function ApiKeyPage() {
   const [apiKey, setApiKey] = React.useState('')
@@ -11,17 +11,22 @@ function ApiKeyPage() {
   const { updateKey } = useKey()
   const { navigate } = usePage()
 
-  const showError = apiKey.length > 0 && !isValid(apiKey)
-
-  function handleSubmit(e: any) {
-    e.preventDefault()
-
-    updateKey(apiKey)
-    navigate('camera')
+  function isValid(key: string | null) {
+    return key !== null && key.length > 0 && key.startsWith('sk')
   }
 
+  const showError = apiKey.length > 0 && !isValid(apiKey)
+
   return (
-    <form className={styles.container} onSubmit={handleSubmit}>
+    <form
+      className={styles.container}
+      onSubmit={(e: any) => {
+        e.preventDefault()
+
+        updateKey(apiKey)
+        navigate('camera')
+      }}
+    >
       <div className={styles.titleContainer}>
         <img
           style={{

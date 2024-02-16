@@ -11,7 +11,7 @@ import { classifyImage } from '../../services/classifyImage'
 import { categorizeWaste } from '../../services/categorizeWaste'
 
 export function ImagePreview({ uri }: { uri: string }) {
-  const [loading, setLoading] = React.useState(true)
+  const [loading, setLoading] = React.useState(false)
   const [response, setResponse] = React.useState<any | null>(null) // improve type
 
   const { navigate } = usePage()
@@ -21,8 +21,6 @@ export function ImagePreview({ uri }: { uri: string }) {
 
   console.log('location', location)
   console.log('response', response)
-
-  // if (!isValid(key)) return { status: 'error', code: 'invalid_key' }
 
   async function analyseImage() {
     let analysisResult
