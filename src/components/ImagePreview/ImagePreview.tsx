@@ -10,6 +10,14 @@ import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 import { classifyImage } from '../../services/classifyImage'
 import { categorizeWaste } from '../../services/categorizeWaste'
 
+const dummyResponse = {
+  status: 'success',
+  data: {
+    object: 'smartphone',
+    category: 'Hazardous',
+  },
+}
+
 export function ImagePreview({ uri }: { uri: string }) {
   const [loading, setLoading] = React.useState(false)
   const [response, setResponse] = React.useState<any | null>(null) // improve type
@@ -30,7 +38,8 @@ export function ImagePreview({ uri }: { uri: string }) {
 
     // Immediately classify image if categories for location present
     if (categories) {
-      analysisResult = await classifyImage(uri, location, categories, key as string)
+      analysisResult = dummyResponse
+      // analysisResult = await classifyImage(uri, location, categories, key as string)
     } else {
       const {
         status,
@@ -59,11 +68,11 @@ export function ImagePreview({ uri }: { uri: string }) {
     if (status === 'success') {
       console.log('category: ', data.category)
 
-      // navigation.navigate('SuccessPage', {
-      //   uri,
-      //   object: data.object,
-      //   categoryName: data.category,
-      // })
+      navigate('success', {
+        uri,
+        object: data.object,
+        categoryName: data.category,
+      })
     }
 
     if (status === 'error') {
