@@ -1,54 +1,57 @@
 import React from 'react'
+import { RotateCcw, Check } from 'react-feather'
+
 import styles from './ImagePreview.module.css'
 
-import { RotateCcw, Check } from 'react-feather'
-import { useLocation } from '../../providers/LocationProvider'
+import { usePage } from '../../providers/PageProvider'
 import { useKey } from '../../providers/KeyProvider'
-// import { useWasteContext } from '../../providers/WasteCategoriesProvider'
-// import { classifyImage } from '../../services/classifyImage'
-// import { categorizeWaste } from '../../services/categorizeWaste'
+import { useLocation } from '../../providers/LocationProvider'
+import { useWasteContext } from '../../providers/WasteCategoriesProvider'
+import { classifyImage } from '../../services/classifyImage'
+import { categorizeWaste } from '../../services/categorizeWaste'
 
 export function ImagePreview({ uri }: { uri: string }) {
-  const location = useLocation() || 'Berlin, Germany'
-  const { key } = useKey()
-
-  // const { getCategoriesForLocation, saveCategoriesForLocation } = useWasteContext()
-  console.log('location', location)
-
-  // if (!isValid(key)) return { status: 'error', code: 'invalid_key' }
-
   const [loading, setLoading] = React.useState(true)
   const [response, setResponse] = React.useState<any | null>(null) // improve type
 
-  // async function analyseImage() {
-  //   let analysisResult
-  //   setLoading(true)
+  const { navigate } = usePage()
+  const { key } = useKey()
+  const location = useLocation() || 'Berlin, Germany'
+  const { getCategoriesForLocation, saveCategoriesForLocation } = useWasteContext()
 
-  //   const categories = getCategoriesForLocation(location)
+  console.log('location', location)
+  console.log('response', response)
 
-  //   // Immediately classify image if categories for location present
-  //   if (categories) {
-  //     analysisResult = await classifyImage(uri, location, categories, key as string)
-  //   } else {
-  //     const {
-  //       status,
-  //       data: fetchedCategories,
-  //       code,
-  //     } = await categorizeWaste(location, key as string)
+  // if (!isValid(key)) return { status: 'error', code: 'invalid_key' }
 
-  //     if (status === 'success') {
-  //       // Classify image with fetched categories
-  //       analysisResult = await classifyImage(uri, location, fetchedCategories, key as string)
-  //       saveCategoriesForLocation({ [location]: fetchedCategories })
-  //     } else {
-  //       analysisResult = { status, code }
-  //     }
-  //   }
+  async function analyseImage() {
+    let analysisResult
+    setLoading(true)
 
-  //   setResponse(analysisResult)
+    const categories = getCategoriesForLocation(location)
 
-  //   setLoading(false)
-  // }
+    // Immediately classify image if categories for location present
+    if (categories) {
+      analysisResult = await classifyImage(uri, location, categories, key as string)
+    } else {
+      const {
+        status,
+        data: fetchedCategories,
+        code,
+      } = await categorizeWaste(location, key as string)
+
+      if (status === 'success') {
+        // Classify image with fetched categories
+        analysisResult = await classifyImage(uri, location, fetchedCategories, key as string)
+        saveCategoriesForLocation({ [location]: fetchedCategories })
+      } else {
+        analysisResult = { status, code }
+      }
+    }
+
+    setResponse(analysisResult)
+    setLoading(false)
+  }
 
   React.useEffect(() => {
     if (response === null) return
@@ -84,10 +87,10 @@ export function ImagePreview({ uri }: { uri: string }) {
           <div className={styles.loader}></div>
         ) : (
           <>
-            <button className={styles.iconBtn}>
+            <button className={styles.iconBtn} onClick={() => navigate('camera')}>
               <RotateCcw size={14} />
             </button>
-            <button className={`${styles.iconBtn} ${styles.primary}`}>
+            <button className={`${styles.iconBtn} ${styles.primary}`} onClick={analyseImage}>
               <Check size={16} />
             </button>
           </>
