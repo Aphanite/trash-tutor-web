@@ -1,0 +1,13 @@
+.label {
+  padding: var(--spacing-xs) var(--spacing-l);
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  column-gap: var(--spacing-xs);
+  align-self: flex-start;
+}
+
+.labelText {
+  color: var(--foreground);
+}
