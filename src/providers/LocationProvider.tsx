@@ -1,19 +1,13 @@
 import React from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import * as Location from 'expo-location'
 
 const LocationContext = React.createContext<string | null | undefined>(undefined)
 
 export function LocationProvider({ children }: React.PropsWithChildren) {
   const [location, setLocation] = React.useState<string | null>(null)
 
-  async function fetchLocation() {
+  async function reverseGeocode(latitude: number, longitude: number) {
     try {
-      const { coords } = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.High,
-      })
-
-      const url = `https://trashtutor.worker.aphanite.net/reverse_geocode?lat=${coords.latitude}&lon=${coords.longitude}`
+      const url = `https://trashtutor.worker.aphanite.net/reverse_geocode?lat=${latitude}&lon=${longitude}`
 
       const response = await fetch(url, {
         method: 'GET',
@@ -24,24 +18,38 @@ export function LocationProvider({ children }: React.PropsWithChildren) {
 
       return json
     } catch (error) {
-      console.error('Request to Worker failed: ', error)
       return { status: 'error', message: 'Connection to Worker failed' }
     }
   }
 
+  async function fetchLocation(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const { coords } = position
+
+          reverseGeocode(coords.latitude, coords.longitude)
+            .then(response => resolve(response))
+            .catch(err => reject(err))
+        },
+        _error => {
+          reject({ status: 'error', message: 'Retrieving current position failed' })
+        },
+        { timeout: 20000, maximumAge: 1000 },
+      )
+    })
+  }
+
   React.useEffect(() => {
     async function requestLocation() {
-      const savedLocation = await AsyncStorage.getItem('location')
+      const savedLocation = window.localStorage.getItem('location')
 
       if (savedLocation === null) {
-        const permission = await Location.requestForegroundPermissionsAsync()
+        const result = await fetchLocation()
 
-        if (permission.status === 'granted') {
-          const { status, data } = await fetchLocation()
-          if (status === 'success') {
-            setLocation(data)
-            await AsyncStorage.setItem('location', data)
-          }
+        if (result?.status === 'success') {
+          setLocation(result.data)
+          window.localStorage.setItem('location', result.data)
         }
       } else {
         setLocation(savedLocation)
