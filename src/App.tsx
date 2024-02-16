@@ -1,6 +1,6 @@
 import { ErrorPage } from './components/ErrorPage'
 import { SuccessPage } from './components/SuccessPage'
-import { ImagePreview } from './components/ImagePreview'
+import { ImagePreview } from './components/ImagePreview/ImagePreview'
 import { CameraPermissionPage } from './components/CameraPermissionPage'
 import { LandingPage } from './components/LandingPage/LandingPage'
 import ApiKeyPage from './components/ApiKeyPage/ApiKeyPage'
@@ -12,7 +12,7 @@ const PAGES: Record<PageKey, any> = {
   // cameraPermission: CameraPermissionPage,
   camera: Camera,
   apiKeyForm: ApiKeyPage,
-  // imagePreview: ImagePreview,
+  imagePreview: ImagePreview,
   // success: SuccessPage,
   // error: ErrorPage,
 }

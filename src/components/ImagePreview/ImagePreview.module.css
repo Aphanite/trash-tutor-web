@@ -1,0 +1,44 @@
+.imageContainer {
+  height: 100%; /* has to be vh for mobile display */
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  column-gap: var(--spacing-xs);
+  padding: var(--spacing-l);
+  /* position: 'absolute'; */
+}
+
+.buttonContainer.loading {
+  height: 100%;
+  background-color: var(--background);
+  opacity: 0.4;
+  padding: 0;
+}
+
+.iconBtn {
+  flex: 1;
+  border: none;
+  border-radius: 36px;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--spacing-s);
+  padding-bottom: var(--spacing-s);
+  padding-left: var(--spacing-m);
+  padding-right: var(--spacing-m);
+  color: var(--primary);
+  background-color: var(--background);
+}
+
+.iconBtn.primary {
+  color: var(--background);
+  background-color: var(--primary);
+}
+
+.iconBtn:disabled {
+  opacity: 0.5;
+}
