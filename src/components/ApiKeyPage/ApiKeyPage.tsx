@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './ApiKeyPage.module.css'
 import keyImg from '../../assets/images/key.png'
 import { usePage } from '../../providers/PageProvider'
-import { isValid } from '../../helpers/keyHelpers'
-import { useKey } from '../../providers/KeyProvider'
+import { isValid, useKey } from '../../providers/KeyProvider'
 
 function ApiKeyPage() {
   const [apiKey, setApiKey] = React.useState('')
