@@ -1,8 +1,6 @@
 import React from 'react'
 import useHasMounted from '../hooks/useHasMounted'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { WasteColorKeys } from '../themes/theme'
-import { germanWasteCategories } from '../helpers/wasteHelpers'
+import { WasteColorKeys, germanWasteCategories } from '../helpers/wasteHelpers'
 
 export type WasteCategory = {
   categoryName: string
@@ -37,13 +35,13 @@ export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
     })
   }
 
-  async function getWasteStorage(): Promise<WasteCache> {
-    const wasteCache = await AsyncStorage.getItem('wasteCategories')
+  function getWasteStorage(): Promise<WasteCache> {
+    const wasteCache = window.localStorage.getItem('wasteCategories')
     return wasteCache && JSON.parse(wasteCache)
   }
 
-  async function updateWasteStorage(categories: WasteCache) {
-    categories && AsyncStorage.setItem('wasteCategories', JSON.stringify(categories))
+  function updateWasteStorage(categories: WasteCache) {
+    categories && window.localStorage.setItem('wasteCategories', JSON.stringify(categories))
   }
 
   React.useEffect(() => {

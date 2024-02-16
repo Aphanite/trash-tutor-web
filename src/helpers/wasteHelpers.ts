@@ -1,5 +1,27 @@
 import { WasteCategory } from '../providers/WasteCategoriesProvider'
 
+export type WasteColorKeys =
+  | 'blue'
+  | 'green'
+  | 'yellow'
+  | 'brown'
+  | 'red'
+  | 'grey'
+  | 'black'
+  | 'null'
+export type WasteColors = Record<WasteColorKeys, string>
+
+export const wasteColors: WasteColors = {
+  blue: '#3795CA',
+  green: '#609C66',
+  yellow: '#F09436',
+  brown: '#944025',
+  red: '#D7191C',
+  grey: '#8A98A6',
+  black: '#232323',
+  null: '#47525C',
+}
+
 export const germanWasteCategories: WasteCategory[] = [
   {
     categoryName: 'packaging',
