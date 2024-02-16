@@ -68,7 +68,7 @@ export function ImagePreview({ uri }: { uri: string }) {
 
     if (status === 'error') {
       console.log('code', code)
-      // navigation.navigate('ErrorPage', { uri, code, object: data?.object })
+      navigate('error', { uri, code, object: data?.object })
     }
   }, [response])
 
