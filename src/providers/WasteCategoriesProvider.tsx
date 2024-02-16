@@ -21,7 +21,7 @@ type WasteContextValue = {
 const WasteCategoriesContext = React.createContext<WasteContextValue | undefined>(undefined)
 
 export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
-  console.log('Rendering Waste Context')
+  console.log('in WasteCategoriesProvider')
   const hasMounted = useHasMounted()
   const [wasteCategories, setWasteCategories] = React.useState<WasteCache>(null)
   console.log('wasteCategories', wasteCategories)

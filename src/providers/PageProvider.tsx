@@ -19,8 +19,8 @@ type PageValue = { currentPage: Page; navigate: (page: PageKey, props?: any) => 
 const PageContext = React.createContext<PageValue | undefined>(undefined)
 
 export function PageProvider({ children }: React.PropsWithChildren) {
+  console.log('in PageProvider')
   const [currentPage, setCurrentPage] = React.useState<Page>({ type: 'landingPage', props: {} })
-  console.log('currentPage in Provider', currentPage)
 
   function navigate(page: PageKey, props: any = {}) {
     setCurrentPage({ type: page, props })

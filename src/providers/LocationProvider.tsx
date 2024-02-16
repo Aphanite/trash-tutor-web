@@ -3,6 +3,7 @@ import React from 'react'
 const LocationContext = React.createContext<string | null | undefined>(undefined)
 
 export function LocationProvider({ children }: React.PropsWithChildren) {
+  console.log('in LocationProvider')
   const [location, setLocation] = React.useState<string | null>(null)
 
   async function reverseGeocode(latitude: number, longitude: number) {
