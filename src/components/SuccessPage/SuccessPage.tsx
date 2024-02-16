@@ -2,7 +2,7 @@ import { Label } from '../Label/Label'
 import { ResultPage } from '../ResultPage/ResultPage'
 import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
-import styles from './SucessPage.module.css'
+import styles from './SuccessPage.module.css'
 import { usePage } from '../../providers/PageProvider'
 import { wasteColors } from '../../helpers/wasteHelpers'
 
