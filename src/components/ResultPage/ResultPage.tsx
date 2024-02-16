@@ -9,7 +9,7 @@ export function ResultPage({ uri, children }: React.PropsWithChildren<{ uri: str
         backgroundSize: 'cover', // or 'contain' depending on your needs
       }}
     >
-      <div className={styles.result}>{children}</div>
+      <div className={styles.resultContainer}>{children}</div>
     </div>
   )
 }

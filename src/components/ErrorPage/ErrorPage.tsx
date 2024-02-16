@@ -43,20 +43,18 @@ function ErrorPage({ uri, code, object }: ErrorParams) {
 
   return (
     <ResultPage uri={uri}>
-      <div className={styles.errorCard}>
-        <div className={styles.errorText}>
-          <h2>{isNetworkError ? 'Uh oh...' : 'Oops!'}</h2>
-          <p>{message}</p>
-        </div>
-        <button
-          className={styles.btn}
-          onClick={() => {
-            navigate(invalidApiKey ? 'apiKeyForm' : isNetworkError ? 'landingPage' : 'camera')
-          }}
-        >
-          {invalidApiKey ? 'Enter API Key' : isNetworkError ? 'Go back' : 'Try again'}
-        </button>
+      <div className={styles.errorText}>
+        <h2>{isNetworkError ? 'Uh oh...' : 'Oops!'}</h2>
+        <p>{message}</p>
       </div>
+      <button
+        className={styles.btn}
+        onClick={() => {
+          navigate(invalidApiKey ? 'apiKeyForm' : isNetworkError ? 'landingPage' : 'camera')
+        }}
+      >
+        {invalidApiKey ? 'Enter API Key' : isNetworkError ? 'Go back' : 'Try again'}
+      </button>
     </ResultPage>
   )
 }
