@@ -13,7 +13,7 @@ export type ErrorParams = {
     | 'internal_server_error'
     | 'connection_error'
     | 'response_not_json'
-    | 'invalid_key'
+    | 'invalid_api_key'
   object?: 'string'
 }
 
@@ -30,7 +30,7 @@ export function ErrorPage({
   const isNetworkError = ['connection_error', 'internal_server_error', 'no_tool_call'].includes(
     params.code,
   )
-  const invalidApiKey = params.code === 'invalid_key'
+  const invalidApiKey = params.code === 'invalid_api_key'
 
   const message = (params => {
     switch (params.code) {
@@ -42,7 +42,7 @@ export function ErrorPage({
         return `We couldn't find a waste category that matches: ${params.object?.toLowerCase()}`
       case 'connection_error':
         return "Our service isn't available right now. Check back soon."
-      case 'invalid_key':
+      case 'invalid_api_key':
         return "You didn't provide a valid API Key."
       default:
         return 'Something went wrong. Please try again later.'
