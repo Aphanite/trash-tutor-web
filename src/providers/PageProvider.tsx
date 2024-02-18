@@ -1,13 +1,6 @@
 import React from 'react'
 
-export type PageKey =
-  | 'landingPage'
-  | 'cameraPermission'
-  | 'camera'
-  | 'apiKeyForm'
-  | 'imagePreview'
-  | 'success'
-  | 'error'
+export type PageKey = 'landingPage' | 'camera' | 'apiKeyForm' | 'imagePreview' | 'success' | 'error'
 
 export type Page = {
   type: PageKey

@@ -9,7 +9,6 @@ import ErrorPage from './components/ErrorPage/ErrorPage'
 
 const PAGES: Record<PageKey, any> = {
   landingPage: LandingPage,
-  // cameraPermission: CameraPermissionPage,
   camera: Camera,
   apiKeyForm: ApiKeyPage,
   imagePreview: ImagePreview,
