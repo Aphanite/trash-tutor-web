@@ -1,6 +1,5 @@
 import { PageKey, usePage } from './providers/PageProvider'
 import { ImagePreview } from './components/ImagePreview/ImagePreview'
-// import { CameraPermissionPage } from './components/CameraPermissionPage'
 import { LandingPage } from './components/LandingPage/LandingPage'
 import ApiKeyPage from './components/ApiKeyPage/ApiKeyPage'
 import Camera from './components/Camera/Camera'
