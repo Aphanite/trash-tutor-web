@@ -9,10 +9,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87); */
-  /* background-color: #242424; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +49,51 @@
   --spacing-xl: 40px;
 }
 
-/* work-sans-regular - latin */
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+/* video, */
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root {
+  isolation: isolate;
+}
+
+/* Work Sans font */
 @font-face {
   font-display: swap;
   font-family: 'Work Sans';
@@ -61,7 +101,6 @@
   font-weight: 400;
   src: url('./assets/fonts/work-sans-v19-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* work-sans-500 - latin */
 @font-face {
   font-display: swap;
   font-family: 'Work Sans';
@@ -69,7 +108,6 @@
   font-weight: 500;
   src: url('./assets/fonts/work-sans-v19-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* work-sans-600 - latin */
 @font-face {
   font-display: swap;
   font-family: 'Work Sans';
@@ -77,7 +115,6 @@
   font-weight: 600;
   src: url('./assets/fonts/work-sans-v19-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* work-sans-700 - latin */
 @font-face {
   font-display: swap;
   font-family: 'Work Sans';
