@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Camera.module.css'
 import { usePage } from '../../providers/PageProvider'
 import { useMediaQuery } from '../../hooks/useMediaQuery'
+import { Maximize } from 'react-feather'
 
 function Camera() {
   const videoRef = React.useRef<HTMLVideoElement>(null)
@@ -68,11 +69,10 @@ function Camera() {
       <div className={styles.cameraContainer}>
         <video ref={videoRef} />
         <button className={styles.btn} onClick={takePicture}>
-          Take photo
+          <Maximize size={24} color="#f8faed" />
         </button>
       </div>
       <canvas ref={canvasRef} className={styles.canvas}></canvas>
-      {/* {src && <img src={src} alt="The screen capture will appear in this box." />} */}
     </>
   )
 }
