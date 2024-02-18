@@ -1,10 +1,17 @@
 import React from 'react'
 import styles from './Camera.module.css'
 import { usePage } from '../../providers/PageProvider'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 
 function Camera() {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
+
+  const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
+  console.log('isSmallDevice', isSmallDevice)
+
+  const width = isSmallDevice ? window.innerWidth : 390
+  const height = isSmallDevice ? window.innerHeight : 844
 
   const { navigate } = usePage()
 
@@ -14,9 +21,10 @@ function Camera() {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
 
-    canvas.width = 390
-    canvas.height = 844
-    context?.drawImage(videoRef.current, 0, 0, 390, 844)
+    canvas.width = width
+    canvas.height = height
+
+    context?.drawImage(videoRef.current, 0, 0, width, height)
 
     const uri = canvas.toDataURL('image/png')
     console.log('data', uri)
@@ -26,14 +34,9 @@ function Camera() {
   React.useEffect(() => {
     let stream: MediaStream
 
-    const constraints = {
-      //   video: true,
-      video: { width: 390, height: 844 },
-    }
-
     if (navigator.mediaDevices?.getUserMedia) {
       navigator.mediaDevices
-        .getUserMedia(constraints)
+        .getUserMedia({ video: { width, height } })
         .then(mediaStream => {
           stream = mediaStream
 
@@ -68,7 +71,7 @@ function Camera() {
           Take photo
         </button>
       </div>
-      <canvas ref={canvasRef}></canvas>
+      <canvas ref={canvasRef} className={styles.canvas}></canvas>
       {/* {src && <img src={src} alt="The screen capture will appear in this box." />} */}
     </>
   )
