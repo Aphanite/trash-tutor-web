@@ -67,6 +67,14 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+
+  /* Allows you to scroll below the viewport; default value is visible */
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: scrollbar;
 }
 
 img,
@@ -95,12 +103,55 @@ h6 {
   overflow-wrap: break-word;
 }
 
+html,
+body,
+#root {
+  /* To smooth any scrolling behavior */
+  -webkit-overflow-scrolling: touch;
+  padding: 0px;
+  /* Allows content to fill the viewport and go beyond the bottom */
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent text size change on orientation change https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 */
+  -webkit-text-size-adjust: 100%;
+  height: calc(100% + env(safe-area-inset-top));
+}
+
 #root {
   isolation: isolate;
   flex: 1;
   flex-shrink: 0;
   flex-basis: auto;
   flex-grow: 1;
+}
+
+/* Display in iPhone 12 Dimensions on non-mobile screens */
+@media screen and (min-width: 768px) {
+  #root {
+    max-width: 390px;
+    height: 844px;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a4c8a9;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    height: 100vh;
+  }
 }
 
 /* Work Sans font */
@@ -131,46 +182,4 @@ h6 {
   font-style: normal;
   font-weight: 700;
   src: url('./assets/fonts/work-sans-v19-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-html,
-body,
-#root {
-  /* To smooth any scrolling behavior */
-  -webkit-overflow-scrolling: touch;
-  padding: 0px;
-  /* Allows content to fill the viewport and go beyond the bottom */
-  min-height: 100%;
-}
-
-html {
-  scroll-behavior: smooth;
-  /* Prevent text size change on orientation change https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 */
-  -webkit-text-size-adjust: 100%;
-  height: calc(100% + env(safe-area-inset-top));
-}
-
-body {
-  /* Allows you to scroll below the viewport; default value is visible */
-  overflow-y: auto;
-  overscroll-behavior-y: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -ms-overflow-style: scrollbar;
-}
-
-/* Display in iPhone 12 Dimensions on non-mobile screens */
-@media screen and (min-width: 768px) {
-  #root {
-    max-width: 390px;
-    height: 844px;
-  }
-
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #a4c8a9;
-  }
 }

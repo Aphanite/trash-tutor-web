@@ -8,7 +8,7 @@ export function LandingPage() {
   const { key } = useKey()
 
   return (
-    <div className={styles.container}>
+    <div className={`container ${styles.container}`}>
       <div className={styles.imageContainer}>
         <img className={styles.logo} src={leaves} />
         <h2 className={styles.title}>

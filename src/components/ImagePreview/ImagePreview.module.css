@@ -1,6 +1,4 @@
-.imageContainer {
-  height: 100%; /* has to be vh for mobile display */
-  width: 100%;
+.container {
   display: flex;
   align-items: flex-end;
 }
@@ -10,7 +8,6 @@
   display: flex;
   column-gap: var(--spacing-xs);
   padding: var(--spacing-l);
-  /* position: 'absolute'; */
 }
 
 .buttonContainer.loading {

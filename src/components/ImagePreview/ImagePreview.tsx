@@ -83,7 +83,7 @@ export function ImagePreview({ uri }: { uri: string }) {
 
   return (
     <div
-      className={styles.imageContainer}
+      className={`container ${styles.container}`}
       style={{
         backgroundImage: `url(${uri})`,
         backgroundSize: 'cover', // or 'contain' depending on your needs
