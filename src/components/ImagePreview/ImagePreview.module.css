@@ -23,18 +23,18 @@
 }
 
 .iconBtn {
+  display: flex;
   flex: 1;
-  border: none;
-  border-radius: 36px;
   justify-content: center;
   align-items: center;
+  border: none;
+  border-radius: 36px;
   padding-top: var(--spacing-s);
   padding-bottom: var(--spacing-s);
   padding-left: var(--spacing-m);
   padding-right: var(--spacing-m);
   color: var(--primary);
   background-color: var(--background);
-  font-size: 16px;
 }
 
 .iconBtn.primary {
