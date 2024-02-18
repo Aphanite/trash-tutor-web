@@ -9,7 +9,6 @@ function Camera() {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
 
   const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
-  console.log('isSmallDevice', isSmallDevice)
 
   const width = isSmallDevice ? window.innerWidth : 390
   const height = isSmallDevice ? window.innerHeight : 844
@@ -26,9 +25,8 @@ function Camera() {
     canvas.height = height
 
     context?.drawImage(videoRef.current, 0, 0, width, height)
-
     const uri = canvas.toDataURL('image/png')
-    console.log('data', uri)
+
     navigate('imagePreview', { uri })
   }
 
@@ -66,7 +64,7 @@ function Camera() {
 
   return (
     <>
-      <div className={styles.cameraContainer}>
+      <div className={`container ${styles.container}`}>
         <video ref={videoRef} />
         <button className={styles.btn} onClick={takePicture}>
           <Maximize size={24} color="#f8faed" />
