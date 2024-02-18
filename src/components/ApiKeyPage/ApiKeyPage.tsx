@@ -19,7 +19,7 @@ function ApiKeyPage() {
 
   return (
     <form
-      className={styles.container}
+      className={`container ${styles.container}`}
       onSubmit={(e: any) => {
         e.preventDefault()
 
