@@ -10,11 +10,9 @@ canvas {
 
 .btn {
   position: absolute;
-  bottom: 0;
   bottom: 24px;
   left: 24px;
   right: 24px;
-  box-sizing: border-box; /* Ensures the button width includes any padding and border */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,6 +21,4 @@ canvas {
   border-radius: 36px;
   color: var(--background);
   background-color: var(--primary);
-  font-family: 'Work Sans';
-  font-size: 16px;
 }
