@@ -55,4 +55,4 @@ mkcert \
 	localhost 127.0.0.1 192.168.1.8
 ```
 
-note: change 192.168.x.x IP
+note: change the 192.168.x.x IP
