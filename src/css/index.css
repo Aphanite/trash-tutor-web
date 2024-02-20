@@ -62,8 +62,9 @@
   }
 
   #root {
-    max-width: 390px;
     height: 100dvh;
+    aspect-ratio: 0.5;
+    padding: 30px;
   }
 
   .container {
