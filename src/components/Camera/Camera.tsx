@@ -1,17 +1,16 @@
 import React from 'react'
 import styles from './Camera.module.css'
 import { usePage } from '../../providers/PageProvider'
-import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { Maximize } from 'react-feather'
 
 function Camera() {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
 
-  const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
+  // const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
 
-  const width = isSmallDevice ? window.innerWidth : 390
-  const height = isSmallDevice ? window.innerHeight : 844
+  // const width = isSmallDevice ? window.innerWidth : 390
+  // const height = isSmallDevice ? window.innerHeight : 844
 
   const { navigate } = usePage()
 
@@ -35,7 +34,7 @@ function Camera() {
 
     if (navigator.mediaDevices?.getUserMedia) {
       navigator.mediaDevices
-        .getUserMedia({ video: { width, height } })
+        .getUserMedia({ video: true })
         .then(mediaStream => {
           stream = mediaStream
 
@@ -66,11 +65,11 @@ function Camera() {
     <>
       <div className={`container ${styles.container}`}>
         <video ref={videoRef} />
-        <button className={styles.btn} onClick={takePicture}>
-          <Maximize size={24} color="#f8faed" />
-        </button>
+        {/*<button className={styles.btn} onClick={takePicture}>*/}
+        {/*  <Maximize size={24} color="#f8faed" />*/}
+        {/*</button>*/}
       </div>
-      <canvas ref={canvasRef} className={styles.canvas}></canvas>
+      {/*<canvas ref={canvasRef} className={styles.canvas}></canvas>*/}
     </>
   )
 }
