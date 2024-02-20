@@ -6,6 +6,7 @@ import { Maximize } from 'react-feather'
 function Camera() {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
+  const streamRef = React.useRef(null)
 
   // const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
 
@@ -14,51 +15,73 @@ function Camera() {
 
   const { navigate } = usePage()
 
-  function takePicture() {
-    if (!canvasRef.current || !videoRef.current) return
-
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-
-    canvas.width = width
-    canvas.height = height
-
-    context?.drawImage(videoRef.current, 0, 0, width, height)
-    const uri = canvas.toDataURL('image/png')
-
-    navigate('imagePreview', { uri })
-  }
+  // function takePicture() {
+  //   if (!canvasRef.current || !videoRef.current) return
+  //
+  //   const canvas = canvasRef.current
+  //   const context = canvas.getContext('2d')
+  //
+  //   canvas.width = width
+  //   canvas.height = height
+  //
+  //   context?.drawImage(videoRef.current, 0, 0, width, height)
+  //   const uri = canvas.toDataURL('image/png')
+  //
+  //   navigate('imagePreview', { uri })
+  // }
 
   React.useEffect(() => {
-    let stream: MediaStream
+    console.log('videoref useeffect')
 
-    if (navigator.mediaDevices?.getUserMedia) {
-      navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then(mediaStream => {
-          stream = mediaStream
+    if (!navigator.mediaDevices?.getUserMedia) return
 
-          if (videoRef.current) {
-            videoRef.current.srcObject = mediaStream
-            videoRef.current.onloadedmetadata = () => {
-              videoRef.current?.play()
-            }
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(mediaStream => {
+        console.log('gotStream')
+        if (streamRef.current) {
+          streamRef.current.getTracks().forEach(track => {
+            console.log('stopping', track)
+            track.stop()
+          })
+        }
+
+        streamRef.current = mediaStream
+
+        if (videoRef.current) {
+          videoRef.current.srcObject = mediaStream
+          videoRef.current.onloadedmetadata = () => {
+            videoRef.current?.play()
           }
-        })
-        .catch(err => {
-          console.error(`${err.name}: ${err.message}`)
-        })
+        }
+      })
+      .catch(reason => {
+        console.log(reason)
+      })
 
-      return () => {
-        // on component cleanup, we stop video tracks
-        console.log('unmounting!')
-        console.log('stream', stream)
-
-        stream?.getTracks().forEach(track => {
-          track.stop()
-        })
-      }
-    }
+    // media({ video: true })
+    //   .then(mediaStream => {
+    //
+    //     if (videoRef.current) {
+    //       videoRef.current.srcObject = mediaStream
+    //       videoRef.current.onloadedmetadata = () => {
+    //         videoRef.current?.play()
+    //       }
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.error(`${err.name}: ${err.message}`)
+    //   })
+    //
+    // return () => {
+    //   // on component cleanup, we stop video tracks
+    //   console.log('unmounting!')
+    //   console.log('stream', stream)
+    //
+    //   stream?.getTracks().forEach(track => {
+    //     track.stop()
+    //   })
+    // }
   }, [])
 
   return (

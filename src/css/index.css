@@ -47,12 +47,9 @@
 }
 
 @media screen and (max-width: 767px) {
-
   .container {
     height: 100dvh;
-    border-radius: 0;
   }
-
 }
 
 /* Display in iPhone 12 Dimensions on non-mobile screens */

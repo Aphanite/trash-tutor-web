@@ -1,0 +1,15 @@
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+
+video {
+  background: #222;
+  margin: 0;
+  width: 100%;
+  height: calc(100% * 1);
+}
+
+
