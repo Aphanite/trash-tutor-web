@@ -1,0 +1,79 @@
+@import 'reset.css';
+@import 'font_work_sans.css';
+
+:root {
+  font-family:
+    Work Sans,
+    system-ui,
+    Avenir,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-weight: 400;
+
+  --light-green: #b3efbc;
+  --dark-green: #3f8349;
+  --green: #609c66;
+  --blue: #3795ca;
+  --red: #d7191c;
+  --yellow: #f09436;
+  --brown: #944025;
+  --grey: #4b4b4b;
+  --dark-grey: #47525c;
+  --light-grey: #8a98a6;
+  --black: #232323;
+  --white: #f8faed;
+
+  --background: var(--dark-green);
+  --foreground: var(--white);
+  --primary: var(--light-green);
+  --danger: var(--red);
+  --info: var(--grey);
+
+  --wasteBlue: var(--blue);
+  --wasteGreen: var(--green);
+  --wasteYellow: var(--yellow);
+  --wasteBrown: var(--brown);
+  --wasteRed: var(--red);
+  --wasteGrey: var(--light-grey);
+  --wasteBlack: var(--black);
+  --wasteNull: var(--dark-grey);
+
+  --spacing-xs: 8px;
+  --spacing-s: 12px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 40px;
+}
+
+/* Display in iPhone 12 Dimensions on non-mobile screens */
+@media screen and (min-width: 768px) {
+  #root {
+    max-width: 390px;
+    height: 844px;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a4c8a9;
+  }
+
+  video {
+    border-radius: 36px;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    height: 100vh;
+    border-radius: 0;
+  }
+}

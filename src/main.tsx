@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+
+import './css/index.css' // needs to be first!!
+
 import App from './App.tsx'
-import './index.css'
 
 import { PageProvider } from './providers/PageProvider'
 import { LocationProvider } from './providers/LocationProvider.tsx'
