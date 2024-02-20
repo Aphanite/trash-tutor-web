@@ -52,7 +52,7 @@
   }
 }
 
-/* Display in iPhone 12 Dimensions on non-mobile screens */
+/* Display in mobile phone-like dimensions on desktop screens */
 @media screen and (min-width: 768px) {
   body {
     display: flex;
@@ -64,7 +64,7 @@
   #root {
     height: 100dvh;
     aspect-ratio: 0.5;
-    padding: 30px;
+    min-height: 570px;
   }
 
   .container {
@@ -75,5 +75,11 @@
 
   video {
     border-radius: 36px;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-height: 700px) {
+  #root {
+    padding: 20px 0;
   }
 }

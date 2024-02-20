@@ -29,10 +29,6 @@ export default {
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
-
-
-
-
 ## HTTPS
 
 #### Run once per computer / phone
@@ -43,8 +39,6 @@ mkcert -install
 ```
 
 Install `~/Library/Application Support/mkcert/rootCA.pem` onto your phone (via AirDrop for example).
-
-
 
 #### Run each time your IP changes
 
