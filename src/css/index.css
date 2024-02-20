@@ -46,8 +46,21 @@
   --spacing-xl: 40px;
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+
 /* Display in iPhone 12 Dimensions on non-mobile screens */
 @media screen and (min-width: 768px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+  }
+
   #root {
     max-width: 390px;
     height: 844px;
@@ -62,18 +75,5 @@
 
   video {
     border-radius: 36px;
-  }
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  border-radius: 36px;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    height: 100vh;
-    border-radius: 0;
   }
 }
