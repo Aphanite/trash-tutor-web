@@ -4,10 +4,10 @@
 }
 
 video {
-  background: red;
+  background: #222;
   width: 100%;
-  height: 100%;
-  object-fit: cover`;
+  height: 100dvh;
+  object-fit: cover;
 }
 
 .canvas {

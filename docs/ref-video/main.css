@@ -6,10 +6,11 @@ body {
 
 
 video {
-  background: #222;
+  background: red;
   margin: 0;
   width: 100%;
-  height: calc(100% * 1);
+  height: 100dvh;
+  object-fit: cover;
 }
 
 

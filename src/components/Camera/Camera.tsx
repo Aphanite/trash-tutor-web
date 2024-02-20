@@ -36,7 +36,7 @@ function Camera() {
     if (!navigator.mediaDevices?.getUserMedia) return
 
     navigator.mediaDevices
-      .getUserMedia({ video: true })
+      .getUserMedia({ video: { facingMode: 'environment' } })
       .then(mediaStream => {
         console.log('gotStream')
         if (streamRef.current) {
@@ -50,9 +50,6 @@ function Camera() {
 
         if (videoRef.current) {
           videoRef.current.srcObject = mediaStream
-          videoRef.current.onloadedmetadata = () => {
-            videoRef.current?.play()
-          }
         }
       })
       .catch(reason => {
@@ -87,7 +84,7 @@ function Camera() {
   return (
     <>
       <div className={`container ${styles.container}`}>
-        <video ref={videoRef} />
+        <video ref={videoRef} playsInline autoPlay />
         {/*<button className={styles.btn} onClick={takePicture}>*/}
         {/*  <Maximize size={24} color="#f8faed" />*/}
         {/*</button>*/}
