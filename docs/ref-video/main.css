@@ -4,7 +4,6 @@ body {
   margin: 0;
 }
 
-
 video {
   background: red;
   margin: 0;
@@ -12,5 +11,3 @@ video {
   height: 100dvh;
   object-fit: cover;
 }
-
-

@@ -54,7 +54,7 @@
 
 /* Display in iPhone 12 Dimensions on non-mobile screens */
 @media screen and (min-width: 768px) {
-   body {
+  body {
     display: flex;
     justify-content: center;
     align-items: center;
