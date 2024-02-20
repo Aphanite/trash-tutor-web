@@ -28,3 +28,20 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## HTTPS
+
+```
+brew install mkcert
+mkcert -install
+mkcert -cert-file "$HOME/Library/Application Support/mkcert/dev.pem"
+```
+
+note: change the last IP
+
+```
+mkcert \
+	-cert-file "$HOME/Library/Application Support/mkcert/dev-cert.pem" \
+	-key-file "$HOME/Library/Application Support/mkcert/dev-key.pem" \
+	localhost 127.0.0.1 192.168.1.8
+```
