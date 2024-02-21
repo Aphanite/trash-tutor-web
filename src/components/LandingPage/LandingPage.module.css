@@ -40,8 +40,6 @@
   font-size: 32px;
   font-weight: 600;
   color: var(--foreground);
-  /* letter-spacing: smallPhone ? -1: 0; */
-  /* font-size: !smallPhone ? 36: 32; */
 }
 
 .title span {
