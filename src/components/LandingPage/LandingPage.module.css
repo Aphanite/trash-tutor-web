@@ -6,8 +6,6 @@
   background-color: var(--background);
   padding: var(--spacing-l);
   gap: var(--spacing-l);
-  /* border-radius: 36px; */
-  /* overflow: scroll; */
 }
 
 .imageContainer {
@@ -20,15 +18,12 @@
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  --logo-size: 12vh;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  max-width: 100px;
+  max-height: 100px;
 }
-
-/* const logoSize = horizontalScale(100) */
-/* .logo {
-  width: logoSize > 100 ? 100: logoSize,
-  height: logoSize > 100 ? 100: logoSize,
-} */
 
 .textContainer {
   flex: 1;
@@ -40,6 +35,7 @@
 }
 
 .title {
+  text-align: center;
   flex-wrap: wrap;
   font-size: 32px;
   font-weight: 600;
