@@ -10,6 +10,46 @@ function Camera() {
 
   const { navigate } = usePage()
 
+  function takePicture() {
+    if (!canvasRef.current || !videoRef.current) return
+
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+
+    const videoElWidth = videoRef.current.clientWidth
+    const videoElHeight = videoRef.current.clientHeight
+
+    const videoStreamWidth = videoRef.current.videoWidth
+    const videoStreamHeight = videoRef.current.videoHeight
+
+    // Determine the largest dimension of video that fits within element
+    const ratio = Math.min(videoStreamWidth / videoElWidth, videoStreamHeight / videoElHeight)
+
+    const width = videoElWidth * ratio
+    const height = videoElHeight * ratio
+
+    const left = (videoStreamWidth - width) / 2
+    const top = (videoStreamHeight - height) / 2
+
+    canvas.width = videoElWidth
+    canvas.height = videoElHeight
+
+    context?.drawImage(
+      videoRef.current,
+      left,
+      top,
+      width,
+      height,
+      0,
+      0,
+      videoElWidth,
+      videoElHeight,
+    )
+
+    const uri = canvas.toDataURL('image/png')
+    navigate('imagePreview', { uri })
+  }
+
   function stopVideo(stream: any) {
     stream.getTracks().forEach(track => {
       console.log('stopping', track)
