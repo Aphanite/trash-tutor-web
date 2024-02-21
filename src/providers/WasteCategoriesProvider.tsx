@@ -1,12 +1,7 @@
 import React from 'react'
 import useHasMounted from '../hooks/useHasMounted'
-import { WasteColorKeys, germanWasteCategories } from '../helpers/wasteHelpers'
+import { WasteCategory, germanWasteCategories } from '../helpers/wasteHelpers'
 
-export type WasteCategory = {
-  categoryName: string
-  binColor: WasteColorKeys
-  description: string
-}
 type LocationWasteMap = { [locationName: string]: WasteCategory[] }
 
 type WasteCache = LocationWasteMap | null

@@ -1,5 +1,3 @@
-import { WasteCategory } from '../providers/WasteCategoriesProvider'
-
 export type WasteColorKeys =
   | 'blue'
   | 'green'
@@ -10,6 +8,12 @@ export type WasteColorKeys =
   | 'black'
   | 'null'
 export type WasteColors = Record<WasteColorKeys, string>
+
+export type WasteCategory = {
+  categoryName: string
+  binColor: WasteColorKeys
+  description: string
+}
 
 export const wasteColors: WasteColors = {
   blue: '#3795CA',
