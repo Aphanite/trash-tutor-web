@@ -8,27 +8,14 @@ function Camera() {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const streamRef = React.useRef(null)
 
-  // const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
-
-  // const width = isSmallDevice ? window.innerWidth : 390
-  // const height = isSmallDevice ? window.innerHeight : 844
-
   const { navigate } = usePage()
 
-  // function takePicture() {
-  //   if (!canvasRef.current || !videoRef.current) return
-  //
-  //   const canvas = canvasRef.current
-  //   const context = canvas.getContext('2d')
-  //
-  //   canvas.width = width
-  //   canvas.height = height
-  //
-  //   context?.drawImage(videoRef.current, 0, 0, width, height)
-  //   const uri = canvas.toDataURL('image/png')
-  //
-  //   navigate('imagePreview', { uri })
-  // }
+  function stopVideo(stream: any) {
+    stream.getTracks().forEach(track => {
+      console.log('stopping', track)
+      track.stop()
+    })
+  }
 
   React.useEffect(() => {
     console.log('videoref useeffect')
@@ -39,12 +26,7 @@ function Camera() {
       .getUserMedia({ video: { facingMode: 'environment' } })
       .then(mediaStream => {
         console.log('gotStream')
-        if (streamRef.current) {
-          streamRef.current.getTracks().forEach(track => {
-            console.log('stopping', track)
-            track.stop()
-          })
-        }
+        if (streamRef.current) stopVideo(streamRef.current)
 
         streamRef.current = mediaStream
 
@@ -56,40 +38,22 @@ function Camera() {
         console.log(reason)
       })
 
-    // media({ video: true })
-    //   .then(mediaStream => {
-    //
-    //     if (videoRef.current) {
-    //       videoRef.current.srcObject = mediaStream
-    //       videoRef.current.onloadedmetadata = () => {
-    //         videoRef.current?.play()
-    //       }
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.error(`${err.name}: ${err.message}`)
-    //   })
-    //
-    // return () => {
-    //   // on component cleanup, we stop video tracks
-    //   console.log('unmounting!')
-    //   console.log('stream', stream)
-    //
-    //   stream?.getTracks().forEach(track => {
-    //     track.stop()
-    //   })
-    // }
+    return () => {
+      // on component cleanup, we stop video tracks
+      console.log('unmounting!')
+      if (streamRef.current) stopVideo(streamRef.current)
+    }
   }, [])
 
   return (
     <>
       <div className={`container ${styles.container}`}>
         <video ref={videoRef} playsInline autoPlay />
-        {/*<button className={styles.btn} onClick={takePicture}>*/}
-        {/*  <Maximize size={24} color="#f8faed" />*/}
-        {/*</button>*/}
+        <button className={styles.btn} onClick={takePicture}>
+          <Maximize size={24} color="#f8faed" />
+        </button>
       </div>
-      {/*<canvas ref={canvasRef} className={styles.canvas}></canvas>*/}
+      <canvas ref={canvasRef} className={styles.canvas}></canvas>
     </>
   )
 }
