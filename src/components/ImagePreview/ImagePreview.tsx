@@ -7,8 +7,8 @@ import { usePage } from '../../providers/PageProvider'
 import { useKey } from '../../providers/KeyProvider'
 import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
-import { classifyImage } from '../../services/classifyImage'
-import { categorizeWaste } from '../../services/categorizeWaste'
+import { classifyImage } from './utils/classifyImage'
+import { categorizeWaste } from './utils/categorizeWaste'
 
 const dummyResponse = {
   status: 'success',

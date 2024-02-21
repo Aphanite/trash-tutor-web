@@ -1,5 +1,5 @@
 import { OpenAI } from 'openai'
-import { WasteCategory } from '../providers/WasteCategoriesProvider'
+import { WasteCategory } from '../../../helpers/wasteHelpers'
 
 export async function classifyImage(
   uri: string,
