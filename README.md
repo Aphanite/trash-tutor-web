@@ -17,14 +17,36 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
-};
+}
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## HTTPS
+
+#### Run once per computer / phone
+
+```
+brew install mkcert
+mkcert -install
+```
+
+Install `~/Library/Application Support/mkcert/rootCA.pem` onto your phone (via AirDrop for example).
+
+#### Run each time your IP changes
+
+```
+mkcert \
+	-cert-file "$HOME/Library/Application Support/mkcert/dev-cert.pem" \
+	-key-file "$HOME/Library/Application Support/mkcert/dev-key.pem" \
+	localhost 127.0.0.1 192.168.1.8
+```
+
+note: change the 192.168.x.x IP
