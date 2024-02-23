@@ -14,13 +14,11 @@ type WasteContextValue = {
 const WasteCategoriesContext = React.createContext<WasteContextValue | undefined>(undefined)
 
 export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
-  console.log('in WasteCategoriesProvider')
   const hasMounted = useHasMounted()
   const [wasteCategories, setWasteCategories] = React.useState<WasteCache>(null)
-  console.log('wasteCategories', wasteCategories)
 
   function getCategoriesForLocation(location: string | null) {
-    if (location === null) return undefined
+    if (location === null) return germanWasteCategories
     return location.includes('Germany') ? germanWasteCategories : wasteCategories?.[location]
   }
 
