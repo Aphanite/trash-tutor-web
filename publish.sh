@@ -10,7 +10,7 @@ DATE=$(date -u +%Y-%m-%dT%H:%M)
 cd dist
 
 # create CNAME file for custom domain
-echo "trash-tutor.aphanite.net" > CNAME
+echo "app.trashtutor.com" > CNAME
 
 git init
 git add .
