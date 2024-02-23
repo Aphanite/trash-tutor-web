@@ -44,6 +44,8 @@
   --spacing-m: 16px;
   --spacing-l: 24px;
   --spacing-xl: 40px;
+
+  --border-radius: 36px;
 }
 
 @media screen and (max-width: 767px) {
@@ -70,11 +72,11 @@
   .container {
     width: 100%;
     height: 100%;
-    border-radius: 36px;
+    border-radius: var(--border-radius);
   }
 
   video {
-    border-radius: 36px;
+    border-radius: var(--border-radius);
   }
 }
 

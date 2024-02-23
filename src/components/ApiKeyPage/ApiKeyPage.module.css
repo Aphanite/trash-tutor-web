@@ -43,7 +43,7 @@ input {
   border-width: 1px;
   border-style: solid;
   border-color: var(--background);
-  border-radius: 36px;
+  border-radius: var(--border-radius);
   background-color: var(--foreground);
   color: var(--background);
   font-family: 'Work Sans';
@@ -78,7 +78,7 @@ input:focus {
   justify-content: center;
   padding: var(--spacing-m);
   border: none;
-  border-radius: 36px;
+  border-radius: var(--border-radius);
   color: var(--background);
   background-color: var(--primary);
 }
