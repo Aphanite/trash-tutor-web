@@ -49,8 +49,13 @@ export async function categorizeWaste(location: string, key: string) {
                         description:
                           'Short explanation which waste types are intended to be disposed in this category',
                       },
+                      domestic: {
+                        type: 'boolean',
+                        description:
+                          'Boolean indicating whether waste category can be disposed of at home (true) or if it requires disposal at a public drop-off or a specialized collection point (false). Usually only general house hold waste, paper and plastic can be disposed of at home.',
+                      },
                     },
-                    required: ['categoryName', 'binColor', 'description'],
+                    required: ['categoryName', 'binColor', 'description', 'domestic'],
                   },
                 },
               },
@@ -66,26 +71,18 @@ export async function categorizeWaste(location: string, key: string) {
     })
 
     const responseMessage = response.choices[0].message
-    console.log('responseMessage:', responseMessage)
 
     // check if the model wanted to call a function
     const toolCall = responseMessage.tool_calls?.[0]
 
-    console.log('toolCall:', toolCall)
-    console.log('function:', toolCall?.function)
-
     if (toolCall?.function?.name === 'save_waste_categories') {
       const { wasteCategories } = JSON.parse(toolCall.function.arguments)
-      console.log('wasteCategories:', wasteCategories)
 
       return { status: 'success', data: wasteCategories }
     }
 
     return { status: 'error', code: 'no_tool_call' }
   } catch (error: any) {
-    console.log(Object.keys(error))
-    console.log(error.status)
-    console.log(error.code)
     console.error('Error when categorizing waste: ', error)
     return { status: 'error', code: error?.code || 'internal_server_error' }
   }
