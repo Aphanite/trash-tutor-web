@@ -18,26 +18,17 @@
   --red: #d7191c;
   --yellow: #f09436;
   --brown: #944025;
-  --grey: #4b4b4b;
+  --grey: #8a98a6;
   --dark-grey: #47525c;
-  --light-grey: #8a98a6;
   --black: #232323;
   --white: #f8faed;
+  --purple: #9d26e9;
 
   --background: var(--dark-green);
   --foreground: var(--white);
   --primary: var(--light-green);
   --danger: var(--red);
-  --info: var(--grey);
-
-  --wasteBlue: var(--blue);
-  --wasteGreen: var(--green);
-  --wasteYellow: var(--yellow);
-  --wasteBrown: var(--brown);
-  --wasteRed: var(--red);
-  --wasteGrey: var(--light-grey);
-  --wasteBlack: var(--black);
-  --wasteNull: var(--dark-grey);
+  --info: #4b4b4b;
 
   --spacing-xs: 8px;
   --spacing-s: 12px;
