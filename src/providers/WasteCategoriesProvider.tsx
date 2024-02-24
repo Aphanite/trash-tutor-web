@@ -8,24 +8,25 @@ type LocationWasteMap = { [locationName: string]: WasteCategory[] }
 type WasteCache = LocationWasteMap | null
 
 type WasteContextValue = {
-  getCategoriesForLocation: (arg0: string | null) => WasteCategory[] | undefined
-  saveCategoriesForLocation: (arg0: LocationWasteMap) => void
+  getCategories: (arg0: string | null) => WasteCategory[] | undefined
+  saveCategories: (arg0: LocationWasteMap) => void
 }
 
 const WasteCategoriesContext = React.createContext<WasteContextValue | undefined>(undefined)
 
 export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
   const hasMounted = useHasMounted()
-  const [wasteCategories, setWasteCategories] = React.useState<WasteCache>(null)
 
-  function getCategoriesForLocation(location: string | null) {
+  const [categories, setCategories] = React.useState<WasteCache>(null)
+
+  function getCategories(location: string | null) {
     if (location === null) return storedWasteCategories.de
-    return location.includes('Germany') ? storedWasteCategories.de : wasteCategories?.[location]
+    return location.includes('Germany') ? storedWasteCategories.de : categories?.[location]
   }
 
-  function saveCategoriesForLocation(categoryMap: LocationWasteMap) {
-    setWasteCategories((current: WasteCache) => {
-      return current ? { ...current, ...categoryMap } : categoryMap
+  function saveCategories(catMap: LocationWasteMap) {
+    setCategories((current: WasteCache) => {
+      return current ? { ...current, ...catMap } : catMap
     })
   }
 
@@ -34,27 +35,25 @@ export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
     return wasteCache && JSON.parse(wasteCache)
   }
 
-  function updateWasteStorage(categories: WasteCache) {
-    categories && window.localStorage.setItem('wasteCategories', JSON.stringify(categories))
+  function updateWasteStorage(cats: WasteCache) {
+    cats && window.localStorage.setItem('wasteCategories', JSON.stringify(cats))
   }
 
   React.useEffect(() => {
     async function handleStorage() {
       if (hasMounted) {
-        await updateWasteStorage(wasteCategories)
+        await updateWasteStorage(categories)
       } else {
         // fetch categories from cache on mount
         const cachedCategories = await getWasteStorage()
-        cachedCategories && setWasteCategories(cachedCategories)
+        cachedCategories && setCategories(cachedCategories)
       }
     }
     handleStorage()
-  }, [wasteCategories])
+  }, [categories])
 
   return (
-    <WasteCategoriesContext.Provider
-      value={{ getCategoriesForLocation, saveCategoriesForLocation }}
-    >
+    <WasteCategoriesContext.Provider value={{ getCategories, saveCategories }}>
       {children}
     </WasteCategoriesContext.Provider>
   )
