@@ -1,6 +1,7 @@
 import React from 'react'
 import useHasMounted from '../hooks/useHasMounted'
 import { WasteCategory } from '../helpers/types'
+import { storedWasteCategories } from '../data/cats'
 
 type LocationWasteMap = { [locationName: string]: WasteCategory[] }
 
@@ -18,8 +19,8 @@ export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
   const [wasteCategories, setWasteCategories] = React.useState<WasteCache>(null)
 
   function getCategoriesForLocation(location: string | null) {
-    if (location === null) return germanWasteCategories
-    return location.includes('Germany') ? germanWasteCategories : wasteCategories?.[location]
+    if (location === null) return storedWasteCategories.de
+    return location.includes('Germany') ? storedWasteCategories.de : wasteCategories?.[location]
   }
 
   function saveCategoriesForLocation(categoryMap: LocationWasteMap) {
