@@ -4,6 +4,7 @@ import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 import styles from './SuccessPage.module.css'
 import { usePage } from '../../providers/PageProvider'
+import { MapPin } from 'react-feather'
 
 export type SuccessParams = {
   uri: string
@@ -22,14 +23,18 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
     return c.categoryName === categoryName
   })
 
-  console.log('chosenCategory?.binColor', chosenCategory?.binColor)
+  const binColor = chosenCategory?.binColor === 'null' ? 'dark-grey' : chosenCategory?.binColor
 
   return (
     <ResultPage uri={uri}>
       <div className={styles.titleContainer}>
         <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
         <h2>{capitalize(object)}</h2>
-        <Label color={chosenCategory?.binColor || 'null'}>{categoryName.toLowerCase()}</Label>
+        <Label color={binColor}>{categoryName.toLowerCase()}</Label>
+        <div className={styles.disposalInfo}>
+          <MapPin size={16} style={{ color: `var(--${binColor})` }} />
+          <p>{chosenCategory?.domestic ? 'At domestic bin' : 'At drop-off or collection point'}</p>
+        </div>
       </div>
       <p className={styles.disclaimer}>
         Please note: For general guidance only. Confirm with your local service as recycling rules

@@ -9,6 +9,12 @@
   font-size: 14px;
 }
 
+.disposalInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
 .disclaimer {
   color: var(--info);
   font-size: 14px;
