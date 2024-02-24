@@ -1,6 +1,6 @@
 import React from 'react'
 import useHasMounted from '../hooks/useHasMounted'
-import { WasteCategory, germanWasteCategories } from '../helpers/wasteHelpers'
+import { WasteCategory } from '../helpers/types'
 
 type LocationWasteMap = { [locationName: string]: WasteCategory[] }
 
