@@ -4,7 +4,6 @@ import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 import styles from './SuccessPage.module.css'
 import { usePage } from '../../providers/PageProvider'
-import { wasteColors } from '../../helpers/wasteHelpers'
 
 export type SuccessParams = {
   uri: string
@@ -23,15 +22,14 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
     return c.categoryName === categoryName
   })
 
-  // is fallback color necessary?
-  const binColor = chosenCategory?.binColor || 'null'
+  console.log('chosenCategory?.binColor', chosenCategory?.binColor)
 
   return (
     <ResultPage uri={uri}>
       <div className={styles.titleContainer}>
         <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
         <h2>{capitalize(object)}</h2>
-        <Label color={wasteColors[binColor]}>{categoryName.toLowerCase()}</Label>
+        <Label color={chosenCategory?.binColor || 'null'}>{categoryName.toLowerCase()}</Label>
       </div>
       <p className={styles.disclaimer}>
         Please note: For general guidance only. Confirm with your local service as recycling rules
