@@ -19,7 +19,11 @@ export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
 
   function getCategories(location: string | null) {
     if (location === null) return storedWasteCategories.de
-    return location.includes('Germany') ? storedWasteCategories.de : categories?.[location]
+
+    if (location.includes('Germany')) return storedWasteCategories.de
+    if (location.includes('Hungary')) return storedWasteCategories.hu
+
+    return categories?.[location]
   }
 
   function saveCategories(newCats: LocationWasteMap) {
