@@ -17,7 +17,7 @@ export function ImagePreview({ uri }: { uri: string }) {
   const { navigate } = usePage()
   const { key } = useKey()
   const location = useLocation() || 'Berlin, Germany'
-  const { getCategoriesForLocation, saveCategoriesForLocation } = useWasteContext()
+  const { getCategories, saveCategories } = useWasteContext()
 
   console.log('location', location)
   console.log('response', response)
@@ -26,7 +26,7 @@ export function ImagePreview({ uri }: { uri: string }) {
     let analysisResult
     setLoading(true)
 
-    const categories = getCategoriesForLocation(location)
+    const categories = getCategories(location)
 
     // Immediately classify image if categories for location present
     if (categories) {
@@ -41,7 +41,7 @@ export function ImagePreview({ uri }: { uri: string }) {
       if (status === 'success') {
         // Classify image with fetched categories
         analysisResult = await classifyImage(uri, location, fetchedCategories, key as string)
-        saveCategoriesForLocation({ [location]: fetchedCategories })
+        saveCategories({ [location]: fetchedCategories })
       } else {
         analysisResult = { status, code }
       }

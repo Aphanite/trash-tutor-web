@@ -5,8 +5,6 @@ import { storedWasteCategories } from '../data/cats'
 
 type LocationWasteMap = { [locationName: string]: WasteCategory[] }
 
-type WasteCache = LocationWasteMap | null
-
 type WasteContextValue = {
   getCategories: (arg0: string | null) => WasteCategory[] | undefined
   saveCategories: (arg0: LocationWasteMap) => void
@@ -17,39 +15,27 @@ const WasteCategoriesContext = React.createContext<WasteContextValue | undefined
 export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
   const hasMounted = useHasMounted()
 
-  const [categories, setCategories] = React.useState<WasteCache>(null)
+  const [categories, setCategories] = React.useState<LocationWasteMap | null>(null)
 
   function getCategories(location: string | null) {
     if (location === null) return storedWasteCategories.de
     return location.includes('Germany') ? storedWasteCategories.de : categories?.[location]
   }
 
-  function saveCategories(catMap: LocationWasteMap) {
-    setCategories((current: WasteCache) => {
-      return current ? { ...current, ...catMap } : catMap
+  function saveCategories(newCats: LocationWasteMap) {
+    setCategories(current => {
+      return current ? { ...current, ...newCats } : newCats
     })
   }
 
-  function getWasteStorage(): Promise<WasteCache> {
-    const wasteCache = window.localStorage.getItem('wasteCategories')
-    return wasteCache && JSON.parse(wasteCache)
-  }
-
-  function updateWasteStorage(cats: WasteCache) {
-    cats && window.localStorage.setItem('wasteCategories', JSON.stringify(cats))
-  }
-
   React.useEffect(() => {
-    async function handleStorage() {
-      if (hasMounted) {
-        await updateWasteStorage(categories)
-      } else {
-        // fetch categories from cache on mount
-        const cachedCategories = await getWasteStorage()
-        cachedCategories && setCategories(cachedCategories)
-      }
+    if (hasMounted) {
+      categories && window.localStorage.setItem('wasteCategories', JSON.stringify(categories))
+    } else {
+      // fetch categories from cache on mount
+      const cache = window.localStorage.getItem('wasteCategories')
+      cache && setCategories(JSON.parse(cache))
     }
-    handleStorage()
   }, [categories])
 
   return (
