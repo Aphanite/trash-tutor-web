@@ -1,3 +1,5 @@
+import { WasteCategory } from '../helpers/types'
+
 export default [
   {
     categoryName: 'packaging',
@@ -58,4 +60,4 @@ export default [
     description: 'Clean used or unused clothing, shoes and other textiles in a usable condition',
     domestic: false,
   },
-]
+] as WasteCategory[]

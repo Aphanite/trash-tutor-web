@@ -1,3 +1,5 @@
+import { WasteCategory } from '../helpers/types'
+
 export default [
   {
     categoryName: 'packaging',
@@ -60,4 +62,4 @@ export default [
       'Including but not limited to batteries, electrical devices, textiles and furniture',
     domestic: false,
   },
-]
+] as WasteCategory[]
