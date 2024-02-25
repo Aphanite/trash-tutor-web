@@ -28,6 +28,11 @@
   gap: var(--spacing-xs);
 }
 
+.disclaimer {
+  text-align: unset;
+  font-size: 14px;
+}
+
 .btn {
   width: 100%;
   display: flex;

@@ -26,9 +26,12 @@ export function HowToPage() {
         </div>
         <div>
           <Eye />
-          <p>Check out the result!</p>
+          <p>Check out the result*</p>
         </div>
       </div>
+      <p className={styles.disclaimer}>
+        *For general guidance only. Confirm with your local service as recycling rules may vary.
+      </p>
       <button
         className={styles.btn}
         onClick={() => {
