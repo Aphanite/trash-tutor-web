@@ -9,7 +9,7 @@
   width: 100%;
   padding: var(--spacing-l);
   background-color: var(--foreground);
-  border-radius: 16px 16px var(--border-radius) var(--border-radius);
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-l);
