@@ -2,8 +2,8 @@ import styles from './HowToPage.module.css'
 
 export function HowToPage() {
   return (
-    <div>
-      <h1>How it works</h1>
+    <div className={`container ${styles.container}`}>
+      <h1 className={styles.title}>How it works</h1>
       <ol>
         <li>Allow location access to let Trash Tutor find out your local recycling rules</li>
         <li>
