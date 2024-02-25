@@ -1,4 +1,4 @@
-import { MapPin } from 'react-feather'
+import { Camera, CheckCircle, Eye, Loader, MapPin } from 'react-feather'
 import styles from './HowToPage.module.css'
 
 export function HowToPage() {
@@ -6,22 +6,28 @@ export function HowToPage() {
     <div className={`container ${styles.container}`}>
       <h1 className={styles.title}>How it works</h1>
       <div className={styles.steps}>
-        <div className={styles.step}>
+        <div>
           <MapPin />
-          <p>Allow location access to let Trash Tutor find out your local recycling rules</p>
+          <p>Grant location access to find your local recycling rules</p>
         </div>
         <div>
-          Open camera and take a snap of the trash! <br />
-          Make sure to:
-          <ul>
-            <li>only scan ONE object</li>
-            <li>the object is clearly visible</li>
-            <li>the picture is on a neutral background</li>
-          </ul>
+          <Camera />
+          <p>Take a snap of the trash</p>
         </div>
-        <div>Click Accept when you are happy with the picture!</div>
-        <div>Let Trash Tutor do its work!</div>
-        <div>Check out the result!</div>
+        <div>
+          <CheckCircle />
+          <p>
+            Accept after taking a clear photo of <strong>1 item</strong> on a neutral background
+          </p>
+        </div>
+        <div>
+          <Loader />
+          <p>Let Trash Tutor do the work!</p>
+        </div>
+        <div>
+          <Eye />
+          <p>Check out the result!</p>
+        </div>
       </div>
       <button
         className={styles.btn}
