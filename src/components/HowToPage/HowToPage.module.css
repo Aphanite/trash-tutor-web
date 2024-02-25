@@ -12,6 +12,13 @@
   color: var(--primary);
 }
 
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .btn {
   width: 100%;
   display: flex;

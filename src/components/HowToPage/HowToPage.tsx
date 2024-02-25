@@ -4,7 +4,7 @@ export function HowToPage() {
   return (
     <div className={`container ${styles.container}`}>
       <h1 className={styles.title}>How it works</h1>
-      <ol>
+      <ol className={styles.content}>
         <li>Allow location access to let Trash Tutor find out your local recycling rules</li>
         <li>
           Open camera and take a snap of the trash! <br />
