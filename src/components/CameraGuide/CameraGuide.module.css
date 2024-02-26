@@ -22,7 +22,7 @@
 }
 
 .textContainer {
-  flex: 4;
+  flex: 5;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -24,7 +24,7 @@ export function CameraGuide() {
           <p>Confirm and scan!</p>
         </div>
         <button className="btn primary" onClick={() => navigate('camera')}>
-          Open Camera
+          Next
         </button>
       </div>
     </div>
