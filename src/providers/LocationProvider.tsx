@@ -4,7 +4,9 @@ const LocationContext = React.createContext<string | null | undefined>(undefined
 
 export function LocationProvider({ children }: React.PropsWithChildren) {
   console.log('in LocationProvider')
-  const [location, setLocation] = React.useState<string | null>(null)
+  const [location, setLocation] = React.useState<string | null>(
+    window.localStorage.getItem('location'),
+  )
 
   async function reverseGeocode(latitude: number, longitude: number) {
     try {
@@ -40,25 +42,6 @@ export function LocationProvider({ children }: React.PropsWithChildren) {
       )
     })
   }
-
-  React.useEffect(() => {
-    async function requestLocation() {
-      const savedLocation = window.localStorage.getItem('location')
-
-      if (savedLocation === null) {
-        const result = await fetchLocation()
-
-        if (result?.status === 'success') {
-          setLocation(result.data)
-          window.localStorage.setItem('location', result.data)
-        }
-      } else {
-        setLocation(savedLocation)
-      }
-    }
-
-    requestLocation()
-  }, [])
 
   return <LocationContext.Provider value={location}>{children}</LocationContext.Provider>
 }
