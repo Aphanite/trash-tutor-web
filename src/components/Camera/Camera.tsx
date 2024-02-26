@@ -89,7 +89,7 @@ function Camera() {
     <>
       <div className={`container ${styles.container}`}>
         <video ref={videoRef} playsInline autoPlay />
-        <button className={styles.btn} onClick={takePicture}>
+        <button className={styles.shutterButton} onClick={takePicture}>
           <Maximize size={24} color="#f8faed" />
         </button>
       </div>
