@@ -14,7 +14,7 @@ export type SuccessParams = {
 
 function SuccessPage({ object, categoryName, uri }: SuccessParams) {
   const { navigate } = usePage()
-  const location = useLocation()
+  const { location } = useLocation()
   const { getCategories } = useWasteContext()
 
   const wasteCategories = getCategories(location)

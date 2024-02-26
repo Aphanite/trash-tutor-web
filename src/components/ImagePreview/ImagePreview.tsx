@@ -16,10 +16,11 @@ export function ImagePreview({ uri }: { uri: string }) {
 
   const { navigate } = usePage()
   const { key } = useKey()
-  const location = useLocation() || 'Berlin, Germany'
+  const { location } = useLocation()
+  console.log('location', location)
+
   const { getCategories, saveCategories } = useWasteContext()
 
-  console.log('location', location)
   console.log('response', response)
 
   async function analyseImage() {
