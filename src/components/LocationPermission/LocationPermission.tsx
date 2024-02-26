@@ -13,7 +13,7 @@ export function LocationPermission() {
           To find out your local recycling rules,
           <br /> grant Trash Tutor access to your location.
         </p>
-        <button className={styles.btn} onClick={() => console.log('Allowed location!')}>
+        <button className="btn primary" onClick={() => console.log('Allowed location!')}>
           Allow
         </button>
       </div>
