@@ -3,13 +3,16 @@ import location from '../../assets/images/location-permission.png'
 
 export function LocationPermission() {
   return (
-    <div>
-      <div>
+    <div className={`container ${styles.container}`}>
+      <div className={styles.imageContainer}>
         <img style={{ width: '30%' }} src={location} />
-        <h2>Location Access</h2>
+        <h2 className={styles.title}>Location Access</h2>
       </div>
-      <div>
-        <p>To find out your local recycling rules, grant Trash Tutor access to your location.</p>
+      <div className={styles.textContainer}>
+        <p>
+          To find out your local recycling rules,
+          <br /> grant Trash Tutor access to your location.
+        </p>
         <button className={styles.btn} onClick={() => console.log('Allowed location!')}>
           Allow
         </button>
