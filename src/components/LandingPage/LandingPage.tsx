@@ -2,10 +2,12 @@ import styles from './LandingPage.module.css'
 import leaves from '../../assets/images/leaves.png'
 import { usePage } from '../../providers/PageProvider'
 import { useKey } from '../../providers/KeyProvider'
+import { useLocation } from '../../providers/LocationProvider'
 
 export function LandingPage() {
   const { navigate } = usePage()
   const { key } = useKey()
+  const location = useLocation()
 
   return (
     <div className={`container ${styles.container}`}>
@@ -29,7 +31,7 @@ export function LandingPage() {
       <button
         className="btn primary"
         onClick={() => {
-          navigate(key ? 'camera' : 'apiKeyForm')
+          navigate(location ? (key ? 'camera' : 'apiKeyForm') : 'location')
         }}
       >
         Start
