@@ -42,7 +42,7 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
       </p>
 
       <button
-        className={styles.btn}
+        className="btn secondary"
         onClick={() => {
           navigate('camera')
         }}
