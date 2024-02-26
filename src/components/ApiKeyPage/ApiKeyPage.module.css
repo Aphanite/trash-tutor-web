@@ -70,7 +70,3 @@ input:focus {
   color: var(--danger);
   text-align: center;
 }
-
-button[type='submit']:disabled {
-  opacity: 0.5;
-}

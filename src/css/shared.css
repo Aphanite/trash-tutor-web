@@ -8,6 +8,10 @@
   color: var(--background);
 }
 
+.btn:disabled {
+  opacity: 0.5;
+}
+
 .btn.primary {
   border: none;
   background-color: var(--primary);
