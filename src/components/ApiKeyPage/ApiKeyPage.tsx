@@ -56,7 +56,7 @@ function ApiKeyPage() {
         {showError && <span className={styles.errorMsg}>Invalid format</span>}
       </div>
 
-      <button type="submit" {...(!isValid(apiKey) && { disabled: true })} className={styles.btn}>
+      <button type="submit" {...(!isValid(apiKey) && { disabled: true })} className="btn primary">
         Save and Scan
       </button>
     </form>
