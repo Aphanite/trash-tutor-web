@@ -14,18 +14,14 @@ export function LandingPage() {
       <div className={styles.imageContainer}>
         <img className={styles.logo} src={leaves} />
         <h2 className={styles.title}>
-          Let's talk <span>trash!</span>
+          Snap, Scan, <span>Sort!</span>
         </h2>
       </div>
       <div className={styles.textContainer}>
-        {!false && (
-          <p className={`${styles.text} ${styles.optionalText}`}>
-            Baffled by bottles and puzzled by plastics?
-          </p>
-        )}
         <p className={styles.text}>
-          Trash Tutor, your friendly AI helper, shows you how to sort your recyclables in just a few
-          clicks!
+          Trash Tutor, your AI Recycling Guide,
+          <br /> shows you how to sort your recyclable <br />
+          ...from just a picture!
         </p>
       </div>
       <button
