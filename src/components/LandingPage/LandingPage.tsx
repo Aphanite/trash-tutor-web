@@ -19,8 +19,7 @@ export function LandingPage() {
       </div>
       <div className={styles.textContainer}>
         <p className={styles.text}>
-          Trash Tutor, your AI Recycling Guide,
-          <br /> shows you how to sort your recyclable <br />
+          Trash Tutor, your AI Recycling Guide, shows you how to sort your recyclable <br />
           ...from just a picture!
         </p>
       </div>
