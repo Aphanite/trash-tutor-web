@@ -48,7 +48,7 @@ function ErrorPage({ uri, code, object }: ErrorParams) {
         <p>{message}</p>
       </div>
       <button
-        className={styles.btn}
+        className="btn secondary"
         onClick={() => {
           navigate(invalidApiKey ? 'apiKeyForm' : isNetworkError ? 'landingPage' : 'camera')
         }}
