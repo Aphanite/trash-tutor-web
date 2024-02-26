@@ -1,9 +1,9 @@
-import styles from './CameraHowTo.module.css'
+import styles from './CameraGuide.module.css'
 import camera from '../../assets/images/camera.png'
 import { usePage } from '../../providers/PageProvider'
 import { ArrowDown } from 'react-feather'
 
-export function CameraHowTo() {
+export function CameraGuide() {
   const { navigate } = usePage()
   return (
     <div className={`container ${styles.container}`}>
