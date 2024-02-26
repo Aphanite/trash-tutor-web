@@ -5,6 +5,8 @@ import ApiKeyPage from './components/ApiKeyPage/ApiKeyPage'
 import Camera from './components/Camera/Camera'
 import SuccessPage from './components/SuccessPage/SuccessPage'
 import ErrorPage from './components/ErrorPage/ErrorPage'
+import { LocationPermission } from './components/LocationPermission/LocationPermission'
+import { CameraGuide } from './components/CameraGuide/CameraGuide'
 
 const PAGES: Record<PageKey, any> = {
   landingPage: LandingPage,
@@ -13,6 +15,8 @@ const PAGES: Record<PageKey, any> = {
   imagePreview: ImagePreview,
   success: SuccessPage,
   error: ErrorPage,
+  guide: CameraGuide,
+  location: LocationPermission,
 }
 
 function App() {
