@@ -31,7 +31,7 @@ export function LocationPermission() {
             await fetchLocation()
             console.log('FINISHED!')
 
-            navigate(key ? 'camera' : 'apiKeyForm')
+            navigate(key ? 'guide' : 'apiKeyForm')
             setLoading(false)
           }}
         >

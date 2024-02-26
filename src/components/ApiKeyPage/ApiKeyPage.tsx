@@ -24,7 +24,7 @@ function ApiKeyPage() {
         e.preventDefault()
 
         updateKey(apiKey)
-        navigate('camera')
+        navigate('guide')
       }}
     >
       <div className={styles.titleContainer}>

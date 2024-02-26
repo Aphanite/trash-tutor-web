@@ -27,7 +27,7 @@ export function LandingPage() {
       <button
         className="btn primary"
         onClick={() => {
-          navigate(location ? (key ? 'camera' : 'apiKeyForm') : 'location')
+          navigate(location ? (key ? 'guide' : 'apiKeyForm') : 'location')
         }}
       >
         Start
