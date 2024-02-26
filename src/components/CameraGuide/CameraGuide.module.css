@@ -29,7 +29,6 @@
 }
 
 .steps {
-  font-size: 14px;
   color: var(--background);
   display: flex;
   gap: var(--spacing-xs);
