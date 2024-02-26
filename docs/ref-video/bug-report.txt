@@ -1,3 +1,5 @@
+URL: https://upload.hyperknot.com/2024-02/safari-bug/index.html
+
 iOS Safari breaks full screen camera video elements when Tab Bar layout is used. Only with Tab Bar (bottom), with Single Bar it works.
 
 This only happens with 100dvh. Setting it to 100.1dvh fixes it.
