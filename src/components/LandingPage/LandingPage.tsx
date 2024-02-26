@@ -7,7 +7,7 @@ import { useLocation } from '../../providers/LocationProvider'
 export function LandingPage() {
   const { navigate } = usePage()
   const { key } = useKey()
-  const location = useLocation()
+  const { location } = useLocation()
 
   return (
     <div className={`container ${styles.container}`}>

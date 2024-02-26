@@ -1,6 +1,15 @@
 import React from 'react'
 
-const LocationContext = React.createContext<string | null | undefined>(undefined)
+type GeocodeResult =
+  | {
+      status: 'success'
+      data: string
+    }
+  | { status: 'error'; message: string }
+
+const LocationContext = React.createContext<
+  { location: string | null; fetchLocation: () => void } | undefined
+>(undefined)
 
 export function LocationProvider({ children }: React.PropsWithChildren) {
   console.log('in LocationProvider')
@@ -8,42 +17,52 @@ export function LocationProvider({ children }: React.PropsWithChildren) {
     window.localStorage.getItem('location'),
   )
 
-  async function reverseGeocode(latitude: number, longitude: number) {
+  async function reverseGeocode(latitude: number, longitude: number): Promise<GeocodeResult> {
+    const url = `https://trashtutor.worker.aphanite.net/reverse_geocode?lat=${latitude}&lon=${longitude}`
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    const json = await response.json()
+    console.log('json', json)
+
+    return json
+  }
+
+  async function fetchLocation() {
     try {
-      const url = `https://trashtutor.worker.aphanite.net/reverse_geocode?lat=${latitude}&lon=${longitude}`
+      const result: GeocodeResult = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const { coords } = position
 
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+            reverseGeocode(coords.latitude, coords.longitude)
+              .then(response => resolve(response))
+              .catch(_err => reject({ status: 'error', message: 'Connection to Worker failed' }))
+          },
+          _error => {
+            reject({ status: 'error', message: 'Retrieving current position failed' })
+          },
+          { timeout: 20000, maximumAge: 1000 },
+        )
       })
-      const json = await response.json()
-      console.log('json', json)
+      console.log('result', result)
 
-      return json
+      if (result?.status === 'success') {
+        setLocation(result.data)
+        window.localStorage.setItem('location', result.data)
+      }
     } catch (error) {
-      return { status: 'error', message: 'Connection to Worker failed' }
+      console.error('error', error)
     }
   }
 
-  async function fetchLocation(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const { coords } = position
-
-          reverseGeocode(coords.latitude, coords.longitude)
-            .then(response => resolve(response))
-            .catch(err => reject(err))
-        },
-        _error => {
-          reject({ status: 'error', message: 'Retrieving current position failed' })
-        },
-        { timeout: 20000, maximumAge: 1000 },
-      )
-    })
-  }
-
-  return <LocationContext.Provider value={location}>{children}</LocationContext.Provider>
+  return (
+    <LocationContext.Provider value={{ location, fetchLocation }}>
+      {children}
+    </LocationContext.Provider>
+  )
 }
 
 export function useLocation() {
