@@ -22,11 +22,12 @@ export function LandingPage() {
           </p>
         )}
         <p className={styles.text}>
-          Trash Tutor, your friendly AI helper, shows you how to sort your recyclables.
+          Trash Tutor, your friendly AI helper, shows you how to sort your recyclables in just a few
+          clicks!
         </p>
       </div>
       <button
-        className={styles.btn}
+        className="btn primary"
         onClick={() => {
           navigate(key ? 'camera' : 'apiKeyForm')
         }}
