@@ -53,7 +53,7 @@ function ApiKeyPage() {
           autoComplete="off"
         />
 
-        {showError && <span className={styles.errorMsg}>Invalid format</span>}
+        {showError && <span className={styles.errorMsg}>invalid format</span>}
       </div>
 
       <button type="submit" {...(!isValid(apiKey) && { disabled: true })} className="btn primary">
