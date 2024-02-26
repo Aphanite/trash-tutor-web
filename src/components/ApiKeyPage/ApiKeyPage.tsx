@@ -41,9 +41,9 @@ function ApiKeyPage() {
 
       <div className={styles.inputContainer}>
         <p className={styles.info}>
-          Your API Key is stored locally on your browser and never sent anywhere else.
+          Your API Key is needed for using OpenAI - it is stored on your browser and never sent
+          anywhere else.
         </p>
-
         <input
           ref={textInputRef}
           className={showError ? styles.error : undefined}
