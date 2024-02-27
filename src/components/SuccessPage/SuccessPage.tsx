@@ -75,7 +75,7 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
             navigate('camera')
           }}
         >
-          Scan again
+          Scan more
         </button>
       </div>
     </ResultPage>
