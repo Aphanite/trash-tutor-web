@@ -18,6 +18,8 @@
 
 .animatedContainer {
   width: 100%;
+  border-radius: var(--border-radius);
+  background-color: var(--foreground);
 }
 
 .maximised {
@@ -26,7 +28,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  .resultContainer {
+  .resultContainer,
+  .animatedContainer {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
   }
 }
