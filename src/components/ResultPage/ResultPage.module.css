@@ -6,17 +6,29 @@
 }
 
 .resultContainer {
-  width: 100%;
   padding: var(--spacing-l);
-  background-color: var(--foreground);
-  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-l);
+  justify-content: space-between;
+  height: 100%;
+}
+
+.animatedContainer {
+  width: 100%;
+  border-radius: var(--border-radius);
+  background-color: var(--foreground);
+}
+
+.maximised {
+  height: 100%;
 }
 
 @media screen and (max-width: 768px) {
-  .resultContainer {
-    border-radius: 16px 16px 0 0;
+  .animatedContainer {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+  .maximised {
+    border-radius: 0;
   }
 }
