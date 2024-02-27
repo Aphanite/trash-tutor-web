@@ -39,32 +39,37 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
 
   return (
     <ResultPage uri={uri} maximised={isMaximised}>
-      <div className={styles.titleContainer}>
+      <div className={styles.textContainer}>
         <ToggleMaximised
           maximised={isMaximised}
           toggleMaximised={() => setIsMaximised(current => !current)}
         />
+
         <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
         <h2>{capitalize(object)}</h2>
+
         <Label color={binColor}>{categoryName.toLowerCase()}</Label>
+
         <div className={styles.disposalInfo}>
           <MapPin size={16} style={{ color: `var(--${binColor})` }} />
           <p>{chosenCategory?.domestic ? 'At domestic bin' : 'At drop-off or collection point'}</p>
         </div>
       </div>
-      <p className={styles.disclaimer}>
-        Please note: For general guidance only. Confirm with your local service as recycling rules
-        may vary.
-      </p>
+      <div className={styles.buttonContainer}>
+        <p className={`${styles.disclaimer} ${styles[isMaximised ? 'show' : 'hidden']}`}>
+          Please note: For general guidance only. Confirm with your local service as recycling rules
+          may vary.
+        </p>
 
-      <button
-        className="btn secondary"
-        onClick={() => {
-          navigate('camera')
-        }}
-      >
-        Scan again
-      </button>
+        <button
+          className="btn secondary"
+          onClick={() => {
+            navigate('camera')
+          }}
+        >
+          Scan again
+        </button>
+      </div>
     </ResultPage>
   )
 }
