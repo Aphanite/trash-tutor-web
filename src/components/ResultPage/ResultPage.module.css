@@ -12,12 +12,12 @@
   row-gap: var(--spacing-l);
   justify-content: space-between;
   height: 100%;
+  background-color: var(--foreground);
+  border-radius: var(--border-radius);
 }
 
 .animatedContainer {
   width: 100%;
-  border-radius: var(--border-radius);
-  background-color: var(--foreground);
 }
 
 .maximised {
@@ -26,7 +26,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .animatedContainer {
+  .resultContainer {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
   }
 }
