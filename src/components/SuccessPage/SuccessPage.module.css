@@ -21,6 +21,11 @@
   font-size: 14px;
 }
 
+.question {
+  padding-top: var(--spacing-m);
+  font-weight: 600;
+}
+
 .buttonContainer {
   display: flex;
   flex-direction: column;
