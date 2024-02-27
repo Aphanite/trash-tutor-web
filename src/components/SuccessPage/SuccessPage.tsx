@@ -4,7 +4,8 @@ import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 import styles from './SuccessPage.module.css'
 import { usePage } from '../../providers/PageProvider'
-import { MapPin } from 'react-feather'
+import { ChevronDown, ChevronUp, MapPin } from 'react-feather'
+import React from 'react'
 
 export type SuccessParams = {
   uri: string
@@ -12,10 +13,17 @@ export type SuccessParams = {
   categoryName: string
 }
 
+function ToggleMaximised({ maximised, toggleMaximised }: any) {
+  const Icon = maximised ? ChevronDown : ChevronUp
+  return <Icon style={{ alignSelf: 'center' }} onClick={toggleMaximised} />
+}
+
 function SuccessPage({ object, categoryName, uri }: SuccessParams) {
   const { navigate } = usePage()
   const { location } = useLocation()
   const { getCategories } = useWasteContext()
+
+  const [isMaximised, setIsMaximised] = React.useState(false)
 
   const wasteCategories = getCategories(location)
 
@@ -25,9 +33,17 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
 
   const binColor = chosenCategory?.binColor === 'null' ? 'dark-grey' : chosenCategory?.binColor
 
+  function capitalize(string: string) {
+    return string[0].toUpperCase() + string.substring(1)
+  }
+
   return (
-    <ResultPage uri={uri}>
+    <ResultPage uri={uri} maximised={isMaximised}>
       <div className={styles.titleContainer}>
+        <ToggleMaximised
+          maximised={isMaximised}
+          toggleMaximised={() => setIsMaximised(current => !current)}
+        />
         <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
         <h2>{capitalize(object)}</h2>
         <Label color={binColor}>{categoryName.toLowerCase()}</Label>
@@ -51,10 +67,6 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
       </button>
     </ResultPage>
   )
-}
-
-function capitalize(string: string) {
-  return string[0].toUpperCase() + string.substring(1)
 }
 
 export default SuccessPage
