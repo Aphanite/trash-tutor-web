@@ -4,6 +4,8 @@ export default [
   {
     categoryName: 'packaging',
     binColor: 'yellow',
+    userDescription:
+      'Plastic and metal objects like PET bottles, household foil, scrap metal (e.g. cutlery), and metal cans (drinks)',
     description:
       'Plastic/metal objects or composites, i.e. PET bottles (eg shampoo, bubble bath), household clean foils (sats, sachets, packaging films), scrap metal (eg cutlery), metal cans (drink and cans)',
     domestic: true,
@@ -11,6 +13,8 @@ export default [
   {
     categoryName: 'paper',
     binColor: 'blue',
+    userDescription:
+      'Paper and cardboard, excluding papers containing food residues and other contaminants (e.g. greasy pizza boxes)',
     description:
       'Paper and cardboard. DO NOT throw in: papers containing food residues and other contaminants (eg oil, fat, solvent), used paper handkerchiefs, napkins!',
     domestic: true,
@@ -32,34 +36,34 @@ export default [
   {
     categoryName: 'batteries',
     binColor: 'red',
-    description: 'Batteries',
+    description: 'Batteries and rechargeable batteries',
     domestic: false,
   },
   {
     categoryName: 'electronic',
     binColor: 'red',
-    description: 'Electronic devices',
+    description:
+      'Electrical or electronic devices, e.g. computers, mobile phones, TVs, washing machines, microwaves',
     domestic: false,
   },
   {
     categoryName: 'hazardous',
     binColor: 'red',
     description:
-      'LED lamps, used oils and toner cartridges, antifreeze, aerosol bottles, and car oil filters',
+      'Waste that can harm health and environment, e.g. medical waste, LED lamps, used oils and toner cartridges, antifreeze, aerosol bottles, and car oil filters',
     domestic: false,
   },
   {
     categoryName: 'textiles',
     binColor: 'purple',
-    description:
-      'Including but not limited to batteries, electrical devices, textiles and furniture',
+    description: 'Clean used or unused clothing, shoes and other textiles in a usable condition',
     domestic: false,
   },
   {
-    categoryName: 'special',
+    categoryName: 'bulky',
     binColor: 'grey',
     description:
-      'Including but not limited to batteries, electrical devices, textiles and furniture',
+      'Too large waste items such as discarded furniture, large appliances (e.g. fridges, ovens) and green waste (e.g. branches, logs)',
     domestic: false,
   },
 ] as WasteCategory[]

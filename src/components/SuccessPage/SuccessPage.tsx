@@ -52,7 +52,9 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
         <Label color={binColor}>{categoryName.toLowerCase()}</Label>
 
         <p className={`${styles.question} ${maximisedStyle}`}>What belongs in this category?</p>
-        <p className={maximisedStyle}>{chosenCategory.description}</p>
+        <p className={maximisedStyle}>
+          {chosenCategory.userDescription || chosenCategory.description}
+        </p>
 
         <p className={`${styles.question} ${maximisedStyle}`}>Where can I dispose of it?</p>
         <div className={styles.disposalInfo}>

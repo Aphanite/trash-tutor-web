@@ -15,4 +15,5 @@ export type WasteCategory = {
   binColor: WasteColors
   description: string
   domestic: boolean
+  userDescription?: string // when description displayed to user should be different from description for AI
 }

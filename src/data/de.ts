@@ -5,13 +5,14 @@ export default [
     categoryName: 'packaging',
     binColor: 'yellow',
     description:
-      'Plastic/metal objects or composites, e.g. foam materials, tools, screws, and toys',
+      'Plastic and metal objects like PET bottles, household foil, scrap metal (e.g. cutlery), and metal cans (drinks)',
     domestic: true,
   },
   {
     categoryName: 'paper',
     binColor: 'blue',
-    description: 'Paper and cardboard, excluding e.g. greasy pizza boxes',
+    description:
+      'Paper and cardboard, excluding papers containing food residues and other contaminants (e.g. greasy pizza boxes)',
     domestic: true,
   },
   {
@@ -24,11 +25,11 @@ export default [
     categoryName: 'glass',
     binColor: 'green',
     description:
-      'Glass packaging for food, beverages, medicals, and cosmetics but excluding window and mirror glass',
+      'Glass packaging for food, beverages, medicals, and cosmetics - excluding window and mirror glass',
     domestic: false,
   },
   {
-    categoryName: 'residual',
+    categoryName: 'household',
     binColor: 'black',
     description:
       'Unusable or non-recyclable items such as diapers, cigarettes, and vacuum cleaner bags',
@@ -51,13 +52,20 @@ export default [
     categoryName: 'hazardous',
     binColor: 'red',
     description:
-      'Waste that can harm health and the environment, e.g. medical waste, LED lamps, used oils and toner cartridges, antifreeze, aerosol bottles, and car oil filters',
+      'Waste that can harm health and environment, e.g. medical waste, LED lamps, used oils and toner cartridges, antifreeze, aerosol bottles, and car oil filters',
     domestic: false,
   },
   {
     categoryName: 'textiles',
     binColor: 'purple',
     description: 'Clean used or unused clothing, shoes and other textiles in a usable condition',
+    domestic: false,
+  },
+  {
+    categoryName: 'bulky',
+    binColor: 'grey',
+    description:
+      'Too large waste items such as discarded furniture, large appliances (e.g. fridges, ovens) and green waste (e.g. branches, logs)',
     domestic: false,
   },
 ] as WasteCategory[]
