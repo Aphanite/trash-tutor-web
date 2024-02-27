@@ -11,8 +11,8 @@ function ApiKeyPage() {
   const { updateKey } = useKey()
   const { navigate } = usePage()
 
-  function isValid(key: string | null) {
-    return key !== null && key.length > 0 && key.startsWith('sk')
+  function isValid(key: string | null): boolean {
+    return typeof key === 'string' && /^sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20}$/.test(key.trim())
   }
 
   const showError = apiKey.length > 0 && !isValid(apiKey)
@@ -23,7 +23,7 @@ function ApiKeyPage() {
       onSubmit={(e: any) => {
         e.preventDefault()
 
-        updateKey(apiKey)
+        updateKey(apiKey.trim())
         navigate('guide')
       }}
     >

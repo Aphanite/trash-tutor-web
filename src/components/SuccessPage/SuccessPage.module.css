@@ -1,7 +1,8 @@
-.titleContainer {
+.textContainer {
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-xs);
+  margin-top: -16px;
 }
 
 .locationInfo {
@@ -18,4 +19,27 @@
 .disclaimer {
   color: var(--info);
   font-size: 14px;
+}
+
+.question {
+  padding-top: var(--spacing-m);
+  font-weight: 600;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-l);
+}
+
+.hidden {
+  opacity: 0;
+  display: none;
+  transition: opacity 1s;
+}
+
+.show {
+  opacity: 1;
+  display: block;
+  transition: opacity 1s;
 }

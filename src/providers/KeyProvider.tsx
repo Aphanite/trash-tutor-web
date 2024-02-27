@@ -5,7 +5,6 @@ const KeyContext = React.createContext<
 >(undefined)
 
 export function KeyProvider({ children }: React.PropsWithChildren) {
-  console.log('in KeyProvider')
   const [key, setKey] = React.useState<string | null>(() =>
     window.localStorage.getItem('openAIKey'),
   )
