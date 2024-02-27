@@ -1,11 +1,10 @@
 .label {
-  padding: var(--spacing-xs) var(--spacing-l);
-  border-radius: var(--border-radius);
   display: flex;
   align-items: center;
-  flex-direction: row;
-  column-gap: var(--spacing-xs);
   align-self: flex-start;
+  column-gap: var(--spacing-s);
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--border-radius);
 }
 
 .labelText {
