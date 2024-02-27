@@ -26,11 +26,7 @@ export function LocationPermission() {
           className="btn primary"
           onClick={async () => {
             setLoading(true)
-
-            console.log('Allowed location!')
             await fetchLocation()
-            console.log('FINISHED!')
-
             navigate(key ? 'guide' : 'apiKeyForm')
             setLoading(false)
           }}

@@ -74,8 +74,8 @@ function Camera() {
           videoRef.current.srcObject = mediaStream
         }
       })
-      .catch(reason => {
-        console.log(reason)
+      .catch(error => {
+        console.log('error', error)
       })
 
     return () => {

@@ -12,7 +12,6 @@ const LocationContext = React.createContext<
 >(undefined)
 
 export function LocationProvider({ children }: React.PropsWithChildren) {
-  console.log('in LocationProvider')
   const [location, setLocation] = React.useState<string | null>(
     window.localStorage.getItem('location'),
   )
@@ -25,7 +24,6 @@ export function LocationProvider({ children }: React.PropsWithChildren) {
       headers: { 'Content-Type': 'application/json' },
     })
     const json = await response.json()
-    console.log('json', json)
 
     return json
   }
