@@ -65,7 +65,7 @@ export async function classifyImage(
         },
       ],
       temperature: 0,
-      max_tokens: 300,
+      max_tokens: 2000,
     })
 
     const result = imageCompletion?.choices?.[0]?.message?.content
@@ -75,9 +75,7 @@ export async function classifyImage(
 
     return parsedResult
   } catch (error) {
-    console.log(Object.keys(error))
-    console.log(error.status)
-    console.log(error.code)
+    console.log(Object.entries(error))
     console.error('Error when categorizing waste: ', error)
     return { status: 'error', code: error?.code || 'internal_server_error' }
   }

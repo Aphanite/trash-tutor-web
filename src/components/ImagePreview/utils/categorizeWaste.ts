@@ -4,7 +4,7 @@ export async function categorizeWaste(location: string, key: string) {
   const openai = new OpenAI({ apiKey: key, dangerouslyAllowBrowser: true })
 
   const systemInstruction = `Role: You are an expert in Waste Categorization within the Waste Management System of ${location}.`
-  const categorizationUserInstruction = `What are the waste bin categories in ${location}?` // `What are the waste bin categories in ${location} and what types of waste are designated for each bin?`
+  const categorizationUserInstruction = `What are the waste categories in ${location} and what types of waste are designated for each bin?`
 
   try {
     const response = await openai.chat.completions.create({
@@ -20,7 +20,7 @@ export async function categorizeWaste(location: string, key: string) {
         },
       ],
       temperature: 0,
-      max_tokens: 300,
+      max_tokens: 2000,
       tools: [
         {
           type: 'function',
