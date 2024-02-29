@@ -1,4 +1,4 @@
-export async function handleError(base64: string, code: string, object?: string) {
+export async function uploadToBucket(base64: string, code: string, object?: string) {
   try {
     const { image, contentType } = convertToImage(base64)
 
