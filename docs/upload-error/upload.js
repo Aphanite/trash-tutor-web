@@ -1,21 +1,18 @@
-export async function uploadToBucket(base64, code, object) {
+import fs from 'fs'
+
+export async function uploadToBucket(filePath, code, object) {
   try {
-    const { image, contentType } = convertToImage(base64)
+    const img = fs.readFileSync(filePath)
+    console.log('image', img)
 
     const timestamp = new Date().toISOString().replace(/[-:.Z]/g, '')
 
-    // for production - connect to deployed Cloudflare worker
-    // const production_url = `https://worker.trashtutor.com/upload_error_${timestamp}`
-
-    // for development - connect to local worker (don't forget to start it)
-    const url = `http://192.168.1.45:8787/upload_error_${timestamp}`
+    const url = `http://127.0.0.1:8787/upload_error_${timestamp}`
 
     const response = await fetch(url, {
       method: 'PUT',
-      body: JSON.stringify({ image, code, object }),
-      headers: {
-        'Content-Type': contentType,
-      },
+      body: JSON.stringify({ img, code, object }),
+      headers: { 'Content-Type': 'application/json' },
     })
     // Log the response
     console.log('File uploaded successfully: ', response)
