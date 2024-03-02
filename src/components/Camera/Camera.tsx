@@ -47,6 +47,12 @@ function Camera() {
     )
 
     const uri = canvas.toDataURL('image/png')
+
+    let link = document.createElement('a')
+    link.download = 'filename.png'
+    link.href = uri
+    link.click()
+
     navigate('imagePreview', { uri })
   }
 
