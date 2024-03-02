@@ -13,51 +13,38 @@ import { uploadToBucket } from '../../helpers/debug'
 
 export function ImagePreview({ uri }: { uri: string }) {
   const [loading, setLoading] = React.useState(false)
-  const [response, setResponse] = React.useState<any | null>(null) // improve type
 
-  const { navigate } = usePage()
-  const { key } = useKey()
   const { location } = useLocation()
-
   const { getCategories, saveCategories } = useWasteContext()
+  const { key } = useKey()
+  const { navigate } = usePage()
 
   async function analyseImage() {
-    let analysisResult
     setLoading(true)
 
-    const categories = getCategories(location)
+    let result
+    let categories = getCategories(location)
 
     // Immediately classify image if categories for location present
     if (categories) {
-      analysisResult = await classifyImage(uri, location, categories, key as string)
+      result = await classifyImage(uri, location, categories, key as string)
     } else {
-      const {
-        status,
-        data: fetchedCategories,
-        code,
-      } = await categorizeWaste(location, key as string)
+      const categorization = await categorizeWaste(location, key as string)
 
-      if (status === 'success') {
+      if (categorization.status === 'success') {
+        categories = categorization.data?.fetchedCategories
+        saveCategories({ [location]: categories })
+
         // Classify image with fetched categories
-        analysisResult = await classifyImage(uri, location, fetchedCategories, key as string)
-        saveCategories({ [location]: fetchedCategories })
+        result = await classifyImage(uri, location, categories, key as string)
       } else {
-        analysisResult = { status, code }
+        result = categorization
       }
     }
 
-    setResponse(analysisResult)
-    setLoading(false)
-  }
-
-  React.useEffect(() => {
-    if (response === null) return
-
-    const { status, data, code } = response
+    const { status, data, code } = result
 
     if (status === 'success') {
-      console.log('category: ', data.category)
-
       navigate('success', {
         uri,
         object: data.object,
@@ -66,11 +53,12 @@ export function ImagePreview({ uri }: { uri: string }) {
     }
 
     if (status === 'error') {
-      console.log('code', code)
-      uploadToBucket(uri, code, data?.object)
+      uploadToBucket({ uri, code, categories, location })
       navigate('error', { uri, code, object: data?.object })
     }
-  }, [response])
+
+    setLoading(false)
+  }
 
   return (
     <div
