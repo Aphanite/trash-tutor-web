@@ -81,9 +81,13 @@ export async function categorizeWaste(location: string, key: string) {
       return { status: 'success', data: wasteCategories }
     }
 
-    return { status: 'error', code: 'no_tool_call' }
+    return addErrorSource({ status: 'error', code: 'no_tool_call' })
   } catch (error: any) {
     console.error('Error when categorizing waste: ', error)
-    return { status: 'error', code: error?.code || 'internal_server_error' }
+    return addErrorSource({ status: 'error', code: error?.code || 'internal_server_error' })
   }
+}
+
+function addErrorSource(error) {
+  return { ...error, source: 'categorizeWaste' }
 }

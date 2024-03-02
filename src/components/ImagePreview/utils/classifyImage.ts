@@ -71,12 +71,17 @@ export async function classifyImage(
     const result = imageCompletion?.choices?.[0]?.message?.content
     const parsedResult = result
       ? JSON.parse(result)
-      : { status: 'error', code: 'response_not_json' }
+      : addErrorSource({ status: 'error', code: 'response_not_json' })
 
     return parsedResult
   } catch (error) {
     console.log(Object.entries(error))
     console.error('Error when categorizing waste: ', error)
-    return { status: 'error', code: error?.code || 'internal_server_error' }
+
+    return addErrorSource({ status: 'error', code: error?.code || 'internal_server_error' })
   }
+}
+
+function addErrorSource(error) {
+  return { ...error, source: 'classifyImage' }
 }
