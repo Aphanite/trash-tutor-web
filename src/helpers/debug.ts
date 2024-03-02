@@ -2,10 +2,10 @@ export async function uploadToBucket(base64: string, code: string) {
   try {
     const { image, contentType } = convertToImage(base64)
 
-    const url = `https://worker.trashtutor.com/upload_error/${code}`
+    // const url = `https://worker.trashtutor.com/upload_error/${code}`
 
     // for development - connect to local worker
-    // const url = `https://localhost:8787/upload_error/${code}`
+    const url = `https://localhost:8787/upload_error/${code}`
 
     const response = await fetch(url, {
       method: 'PUT',
