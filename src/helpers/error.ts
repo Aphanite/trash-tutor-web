@@ -1,8 +1,8 @@
-import { WasteCategory } from './types'
+import { ErrorCodes, WasteCategory } from './types'
 
 export async function uploadError(data: {
   uri: string
-  code: string
+  code: ErrorCodes
   source: 'classifyImage' | 'categorizeWaste'
   categories: WasteCategory[]
   location: string | null

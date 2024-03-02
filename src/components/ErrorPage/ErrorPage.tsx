@@ -1,18 +1,11 @@
+import { ErrorCodes } from '../../helpers/types'
 import { usePage } from '../../providers/PageProvider'
 import { ResultPage } from '../ResultPage/ResultPage'
 import styles from './ErrorPage.module.css'
 
 export type ErrorParams = {
   uri: string
-  code:
-    | 'unidentifiable_object'
-    | 'unidentifiable_category'
-    | 'multiple_objects'
-    | 'no_tool_call'
-    | 'internal_server_error'
-    | 'connection_error'
-    | 'response_not_json'
-    | 'invalid_api_key'
+  code: ErrorCodes
   object?: 'string'
 }
 
