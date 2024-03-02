@@ -1,8 +1,9 @@
 import { WasteCategory } from './types'
 
-export async function uploadToBucket(data: {
+export async function uploadError(data: {
   uri: string
   code: string
+  source: 'classifyImage' | 'categorizeWaste'
   categories: WasteCategory[]
   location: string | null
 }) {

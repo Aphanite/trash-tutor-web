@@ -9,7 +9,7 @@ import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 import { classifyImage } from './utils/classifyImage'
 import { categorizeWaste } from './utils/categorizeWaste'
-import { uploadToBucket } from '../../helpers/debug'
+import { uploadError } from '../../helpers/error'
 
 export function ImagePreview({ uri }: { uri: string }) {
   const [loading, setLoading] = React.useState(false)
@@ -42,7 +42,7 @@ export function ImagePreview({ uri }: { uri: string }) {
       }
     }
 
-    const { status, data, code } = result
+    const { status, data, code, source } = result
 
     if (status === 'success') {
       navigate('success', {
@@ -53,7 +53,9 @@ export function ImagePreview({ uri }: { uri: string }) {
     }
 
     if (status === 'error') {
-      uploadToBucket({ uri, code, categories, location })
+      const errorData = { uri, code, source, categories, location }
+      uploadError(errorData)
+
       navigate('error', { uri, code, object: data?.object })
     }
 
