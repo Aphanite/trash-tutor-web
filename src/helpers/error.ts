@@ -10,11 +10,7 @@ export async function uploadError(data: {
   try {
     if (data.code === 'invalid_api_key') return
 
-    // const url = `https://worker.trashtutor.com/upload_error`
-    // for development - connect to local worker
-    const url = `https://localhost:8787/upload_error`
-
-    const response = await fetch(url, {
+    const response = await fetch('https://worker.trashtutor.com/upload_error', {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: {
