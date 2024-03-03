@@ -8,8 +8,9 @@ export async function uploadError(data: {
   location: string | null
 }) {
   try {
-    // const url = `https://worker.trashtutor.com/upload_error/${code}`
+    if (data.code === 'invalid_api_key') return
 
+    // const url = `https://worker.trashtutor.com/upload_error`
     // for development - connect to local worker
     const url = `https://localhost:8787/upload_error`
 
