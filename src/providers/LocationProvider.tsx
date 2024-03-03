@@ -17,7 +17,7 @@ export function LocationProvider({ children }: React.PropsWithChildren) {
   )
 
   async function reverseGeocode(latitude: number, longitude: number): Promise<GeocodeResult> {
-    const url = `https://trashtutor.worker.aphanite.net/reverse_geocode?lat=${latitude}&lon=${longitude}`
+    const url = `https://worker.trashtutor.com/reverse_geocode?lat=${latitude}&lon=${longitude}`
 
     const response = await fetch(url, {
       method: 'GET',
