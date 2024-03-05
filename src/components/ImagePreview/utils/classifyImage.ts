@@ -76,7 +76,7 @@ export async function classifyImage(
     return parsedResult
   } catch (error) {
     console.log(Object.entries(error))
-    console.error('Error when categorizing waste: ', error)
+    console.error('Error when classifying image: ', error)
 
     return addErrorSource({ status: 'error', code: error?.code || 'internal_server_error' })
   }
