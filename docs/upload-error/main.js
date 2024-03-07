@@ -1,15 +1,13 @@
-async function uploadToBucket(base64, code) {
+async function uploadToBucket(uri, code) {
   try {
-    const { image, contentType } = convertToImage(base64)
-
     // for development - connect to local worker (don't forget to start it)
-    const url = `https://localhost:8787/upload_error/${code}`
+    const url = `https://localhost:8787/upload_error`
 
     const response = await fetch(url, {
       method: 'PUT',
-      body: image,
+      body: JSON.stringify({ uri, code, location: 'Budapest, Hungary' }),
       headers: {
-        'Content-Type': contentType,
+        'Content-Type': 'application/json',
       },
     })
     // Log the response
@@ -33,42 +31,6 @@ function convertToBase64() {
   return canvas.toDataURL('image/png')
 }
 
-function convertToImage(base64) {
-  let [metaData, data] = base64.split(';')
-
-  let contentType = metaData.split(':')[1]
-  let imageExt = contentType.split('/')[1]
-
-  // get the real base64 content of the file
-  let realData = data.split(',')[1]
-
-  // convert to blob
-  let blob = b64toBlob(realData, contentType)
-
-  return { contentType, image: new File([blob], `photo.${imageExt}`) }
-}
-
-function b64toBlob(b64Data, contentType, sliceSize = 512) {
-  let byteCharacters = atob(b64Data)
-  let byteArrays = []
-
-  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-    let slice = byteCharacters.slice(offset, offset + sliceSize)
-
-    let byteNumbers = new Array(slice.length)
-    for (let i = 0; i < slice.length; i++) {
-      byteNumbers[i] = slice.charCodeAt(i)
-    }
-
-    let byteArray = new Uint8Array(byteNumbers)
-
-    byteArrays.push(byteArray)
-  }
-
-  let blob = new Blob(byteArrays, { type: contentType })
-  return blob
-}
-
 // Execute
 console.log('in file')
 const exampleCodes = [
@@ -86,10 +48,8 @@ const button = document.querySelector('button')
 
 button.addEventListener('click', async e => {
   e.preventDefault()
-  console.log('in event')
   // base64 to later mimick behavior in app
   const base64 = convertToBase64()
-  console.log('base64', base64)
 
   const response = await uploadToBucket(base64, exampleCodes[0])
   console.log('response', response)
