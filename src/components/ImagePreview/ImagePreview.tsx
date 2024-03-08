@@ -53,10 +53,10 @@ export function ImagePreview({ uri }: { uri: string }) {
     }
 
     if (status === 'error') {
-      const metaData = { code, object: data?.object, source, categories, location }
+      const metaData = { code, object: data?.item, source, categories, location }
       uploadError(uri, metaData)
 
-      navigate('error', { uri, code, object: data?.object })
+      navigate('error', { uri, code, object: data?.item })
     }
 
     setLoading(false)
