@@ -59,8 +59,6 @@ export async function convertAnswer(llmAnswer: string, key: string) {
     },
   })
 
-  console.log('usage', completion.usage)
-
   const responseMessage = completion.choices[0].message
 
   // check if the model wanted to call a function
@@ -71,9 +69,14 @@ export async function convertAnswer(llmAnswer: string, key: string) {
     const args = JSON.parse(toolCall.function.arguments)
     console.log('args', args)
 
+    if (!args.itemDetected) return { status: 'error', code: 'unidentifiable_object', data: args }
+
+    if (args.itemDetected && !args.categoryDetected)
+      return { status: 'error', code: 'unidentifiable_category', data: args }
+
     return { status: 'success', data: args }
   }
 
   console.log('no tool call')
-  return { status: 'error', code: 'no_tool_call' }
+  return { status: 'error', code: 'no_tool_call', source: 'convert' }
 }
