@@ -7,9 +7,9 @@ import { usePage } from '../../providers/PageProvider'
 import { useKey } from '../../providers/KeyProvider'
 import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
-import { classifyImage } from './utils/classifyImage'
 import { categorizeWaste } from './utils/categorizeWaste'
 import { uploadError } from '../../helpers/error'
+import { classify } from './utils/classify'
 
 export function ImagePreview({ uri }: { uri: string }) {
   const [loading, setLoading] = React.useState(false)
@@ -27,7 +27,7 @@ export function ImagePreview({ uri }: { uri: string }) {
 
     // Immediately classify image if categories for location present
     if (categories) {
-      result = await classifyImage(uri, location, categories, key as string)
+      result = await classify(uri, location, categories, key as string)
     } else {
       const categorization = await categorizeWaste(location, key as string)
 
@@ -36,7 +36,7 @@ export function ImagePreview({ uri }: { uri: string }) {
         saveCategories({ [location]: categories })
 
         // Classify image with fetched categories
-        result = await classifyImage(uri, location, categories, key as string)
+        result = await classify(uri, location, categories, key as string)
       } else {
         result = categorization
       }
@@ -47,8 +47,8 @@ export function ImagePreview({ uri }: { uri: string }) {
     if (status === 'success') {
       navigate('success', {
         uri,
-        object: data.object,
-        categoryName: data.category,
+        object: data.item,
+        categoryName: data.categoryName,
       })
     }
 
