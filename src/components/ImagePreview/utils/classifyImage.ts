@@ -13,75 +13,41 @@ export async function classifyImage(
     return { categoryName, description }
   })
 
-  const systemInstruction = `You will be provided with an image and a list of waste categories in ${location}.
-  A waste category is an object with two props: 'categoryName' and 'description', i.e. a materials description for the category.
+  const systemInstruction = `You are an expert assistant helping the user with household recycling and waste.
+The user's location is ${location}.
+The following waste categories are available: ${JSON.stringify(categories)}
+The user uploads a photo of an item and your task is to figure out whate exactly the item is made off and select which would be the best waste category to dispose of it from the JSON passed by the user.
+In case multiple items are visible on the photo, please choose the biggest one or the most likely one to be thrown into a bin.
+If there are no specific categories for a given item, please select "household", as long as the item is not hazardous.
+First, include a short reasoning about why this item needs to be recycled this way.
+Finally, finish your answer with: CATEGORY and the name of the waste category.`
 
-  Use the following step-by-step instructions to respond to user inputs.
-
-  Step 1 - Identify the object in focus on the image and the material it is made of. Really look closely!
-
-  Step 2 - Assign the object to the matching waste category in ${location}.
-
-  Always return a json of the following output formats!
-
-  Output format:
-  1. If successful: {"status": "success", "data": {"object": "_OBJECT NAME_", "category": "_CATEGORY NAME_"}}
-
-  2. If the object on the image can't be identified: {"status": "error","code": "unidentifiable_object"}
-
-  3. If the image shows various objects not of the same type: {"status": "error","code": "multiple_objects"}
-
-  4. If object on the image is idenifiable but you can't assign a matching waste category: {"status": "error", "code": "unidentifiable_category", "data": {"object": "_OBJECT NAME_"}}
-
-  5. If there's any other error: {"status": "error", code: "Something went wrong"}
-
-  Do your best and really stick to the output format! My career depends on it!
-  `
-
-  const userPrompt = `Waste categories in ${location}: ${JSON.stringify(categories)}`
-  try {
-    const imageCompletion = await openai.chat.completions.create({
-      model: 'gpt-4-vision-preview',
-      messages: [
-        {
-          role: 'system',
-          content: systemInstruction,
-        },
-        {
-          role: 'user',
-          content: [
-            {
-              type: 'text',
-              text: userPrompt,
+  const imageCompletion = await openai.chat.completions.create({
+    model: 'gpt-4-vision-preview',
+    messages: [
+      {
+        role: 'system',
+        content: systemInstruction,
+      },
+      {
+        role: 'user',
+        content: [
+          {
+            type: 'image_url',
+            image_url: {
+              url: uri,
+              detail: 'low',
             },
-            {
-              type: 'image_url',
-              image_url: {
-                url: uri,
-                detail: 'low',
-              },
-            },
-          ],
-        },
-      ],
-      temperature: 0,
-      max_tokens: 2000,
-    })
+          },
+        ],
+      },
+    ],
+    temperature: 0,
+    max_tokens: 2000,
+  })
 
-    const result = imageCompletion?.choices?.[0]?.message?.content
-    const parsedResult = result
-      ? JSON.parse(result)
-      : addErrorSource({ status: 'error', code: 'response_not_json' })
+  const result = imageCompletion?.choices?.[0]?.message?.content
+  console.log('result', result)
 
-    return parsedResult
-  } catch (error) {
-    console.log(Object.entries(error))
-    console.error('Error when classifying image: ', error)
-
-    return addErrorSource({ status: 'error', code: error?.code || 'internal_server_error' })
-  }
-}
-
-function addErrorSource(error) {
-  return { ...error, source: 'classifyImage' }
+  return result
 }
