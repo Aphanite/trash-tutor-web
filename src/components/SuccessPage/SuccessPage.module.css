@@ -22,7 +22,7 @@
 }
 
 .question {
-  padding-top: var(--spacing-m);
+  /* padding-top: var(--spacing-m); */
   font-weight: 600;
 }
 
@@ -65,4 +65,16 @@
 
 .infoContainer p.active {
   height: auto;
+}
+
+.categoryInfoContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-m);
+}
+
+.categoryInfoContainer > div {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-xs);
 }
