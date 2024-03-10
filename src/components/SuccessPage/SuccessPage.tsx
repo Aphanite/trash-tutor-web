@@ -11,9 +11,10 @@ export type SuccessParams = {
   uri: string
   object: string
   categoryName: string
+  reason: string
 }
 
-function SuccessPage({ object, categoryName, uri }: SuccessParams) {
+function SuccessPage({ uri, object, categoryName, reason }: SuccessParams) {
   const { navigate } = usePage()
   const { location } = useLocation()
   const { getCategories } = useWasteContext()
@@ -27,12 +28,6 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
   })
 
   const binColor = chosenCategory?.binColor === 'null' ? 'dark-grey' : chosenCategory?.binColor
-
-  let text =
-    'The container is made of plastic and used for transporting mail or packages, and should be recycled in the packaging category if clean and free of hazardous materials.'
-
-  text =
-    'It is a glass packaging item typically used for food or beverages and is not a non-recyclable type like window or mirror glass.'
 
   function capitalize(string: string) {
     return string[0].toUpperCase() + string.substring(1)
@@ -81,7 +76,7 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
         )}
       </div>
 
-      {!isMaximised && <p>{text}</p>}
+      {!isMaximised && <p>{reason}</p>}
 
       <div className={styles.buttonContainer}>
         <button
