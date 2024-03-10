@@ -46,7 +46,7 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
       </div>
 
       <div className={styles.infoContainer}>
-        <p>{displayText} </p>
+        <p className={`${isMaximised && styles.active}`}>{text}</p>
         <button className={styles.readBtn} onClick={() => setIsMaximised(current => !current)}>
           {isMaximised ? 'Read less' : 'Read more'}
         </button>

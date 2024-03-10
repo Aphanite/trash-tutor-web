@@ -19,7 +19,6 @@
 .disclaimer {
   color: var(--info);
   font-size: 14px;
-  margin: var(--spacing-xs) 0;
 }
 
 .question {
@@ -56,4 +55,14 @@
 .infoContainer {
   display: flex;
   flex-direction: column;
+}
+
+.infoContainer p {
+  height: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.infoContainer p.active {
+  height: auto;
 }
