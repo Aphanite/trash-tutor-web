@@ -13,11 +13,6 @@ export type SuccessParams = {
   categoryName: string
 }
 
-function ToggleMaximised({ maximised, toggleMaximised }: any) {
-  const Icon = maximised ? ChevronDown : ChevronUp
-  return <Icon style={{ alignSelf: 'center' }} onClick={toggleMaximised} />
-}
-
 function SuccessPage({ object, categoryName, uri }: SuccessParams) {
   const { navigate } = usePage()
   const { location } = useLocation()
@@ -32,7 +27,10 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
   })
 
   const binColor = chosenCategory?.binColor === 'null' ? 'dark-grey' : chosenCategory?.binColor
-  const maximisedStyle = styles[isMaximised ? 'show' : 'hidden']
+
+  const text =
+    'The container is made of plastic and used for transporting mail or packages, and should be recycled in the packaging category if clean and free of hazardous materials.'
+  const displayText = isMaximised ? text : `${text.substring(0, 120)}...`
 
   function capitalize(string: string) {
     return string[0].toUpperCase() + string.substring(1)
@@ -41,34 +39,21 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
   return (
     <ResultPage uri={uri} maximised={isMaximised}>
       <div className={styles.textContainer}>
-        <ToggleMaximised
-          maximised={isMaximised}
-          toggleMaximised={() => setIsMaximised(current => !current)}
-        />
-
         <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
         <h2>{capitalize(object)}</h2>
 
         <Label color={binColor}>{categoryName.toLowerCase()}</Label>
-
-        <p className={`${styles.question} ${maximisedStyle}`}>What belongs in this category?</p>
-        <p className={maximisedStyle}>
-          {chosenCategory.userDescription || chosenCategory.description}
-        </p>
-
-        <p className={`${styles.question} ${maximisedStyle}`}>Where can I dispose of it?</p>
-        <div className={styles.disposalInfo}>
-          <MapPin size={16} style={{ color: `var(--${binColor})` }} />
-          <p>{chosenCategory?.domestic ? 'At domestic bin' : 'At drop-off or collection point'}</p>
-        </div>
       </div>
 
-      <div className={styles.buttonContainer}>
-        <p className={`${styles.disclaimer} ${maximisedStyle}`}>
-          Please note: For general guidance only. Confirm with your local service as recycling rules
-          may vary.
-        </p>
+      <div className={styles.infoContainer}>
+        <p>{displayText} </p>
+        <button className={styles.readBtn} onClick={() => setIsMaximised(current => !current)}>
+          {isMaximised ? 'Read less' : 'Read more'}
+        </button>
+      </div>
 
+      <p className={`${styles.disclaimer}`}>Please note: For general guidance only.</p>
+      <div className={styles.buttonContainer}>
         <button
           className="btn secondary"
           onClick={() => {
