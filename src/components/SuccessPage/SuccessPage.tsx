@@ -4,7 +4,7 @@ import { useLocation } from '../../providers/LocationProvider'
 import { useWasteContext } from '../../providers/WasteCategoriesProvider'
 import styles from './SuccessPage.module.css'
 import { usePage } from '../../providers/PageProvider'
-import { ChevronDown, ChevronUp, MapPin } from 'react-feather'
+import { MapPin } from 'react-feather'
 import React from 'react'
 
 export type SuccessParams = {
@@ -38,86 +38,61 @@ function SuccessPage({ object, categoryName, uri }: SuccessParams) {
     return string[0].toUpperCase() + string.substring(1)
   }
 
-  const Result = () => {
-    return (
-      <>
-        <div className={styles.textContainer}>
-          <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
-          <h2>{capitalize(object)}</h2>
+  return (
+    <ResultPage uri={uri} maximised={isMaximised}>
+      <div className={styles.textContainer}>
+        <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
+        <h2>
+          {isMaximised ? (
+            <>
+              Category:{' '}
+              <span style={{ color: `var(--${binColor})` }}>{capitalize(categoryName)}</span>
+            </>
+          ) : (
+            capitalize(object)
+          )}
+        </h2>
 
+        {!isMaximised && (
           <Label color={binColor} onClick={() => setIsMaximised(true)}>
             {categoryName.toLowerCase()}
           </Label>
-        </div>
+        )}
 
-        <p>{text}</p>
-
-        <div className={styles.buttonContainer}>
-          <button
-            className="btn secondary"
-            onClick={() => {
-              navigate('camera')
-            }}
-          >
-            Scan more
-          </button>
-        </div>
-      </>
-    )
-  }
-
-  const CategoryExplained = () => {
-    return (
-      <>
-        <div className={styles.textContainer}>
-          <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
-          <h2>
-            Category:{' '}
-            <span style={{ color: `var(--${binColor})` }}>{capitalize(categoryName)}</span>
-          </h2>
-        </div>
-
-        <div className={styles.categoryInfoContainer}>
-          <div>
-            <p className={styles.question}>What belongs in it?</p>
-            <p>{chosenCategory.userDescription || chosenCategory.description}</p>
-          </div>
-
-          <div>
-            <p className={styles.question}>Where can I dispose of it?</p>
-            <div className={styles.disposalInfo}>
-              <MapPin size={16} style={{ color: `var(--${binColor})` }} />
-              <p>
-                {chosenCategory?.domestic ? 'At domestic bin' : 'At drop-off or collection point'}
-              </p>
+        {isMaximised && (
+          <div className={styles.categoryInfoContainer}>
+            <div>
+              <p className={styles.question}>What belongs in it?</p>
+              <p>{chosenCategory.userDescription || chosenCategory.description}</p>
             </div>
+
+            <div>
+              <p className={styles.question}>Where can I dispose of it?</p>
+              <div className={styles.disposalInfo}>
+                <MapPin size={16} style={{ color: `var(--${binColor})` }} />
+                <p>
+                  {chosenCategory?.domestic ? 'At domestic bin' : 'At drop-off or collection point'}
+                </p>
+              </div>
+            </div>
+
+            <p className={styles.disclaimer}>Please note: For general guidance only.</p>
           </div>
+        )}
+      </div>
 
-          <p className={styles.disclaimer}>Please note: For general guidance only.</p>
-        </div>
+      {!isMaximised && <p>{text}</p>}
 
-        <div className={styles.buttonContainer}>
-          <button
-            className="btn secondary"
-            style={{
-              color: `var(--${binColor})`,
-              borderColor: `var(--${binColor})`,
-            }}
-            onClick={() => {
-              setIsMaximised(false)
-            }}
-          >
-            Back to result
-          </button>
-        </div>
-      </>
-    )
-  }
-
-  const content = isMaximised ? <CategoryExplained /> : <Result />
-  return (
-    <ResultPage uri={uri} maximised={isMaximised}>
-      {content}
+      <div className={styles.buttonContainer}>
+        <button
+          className="btn secondary"
+          onClick={() => {
+            isMaximised ? setIsMaximised(false) : navigate('camera')
+          }}
+        >
+          {isMaximised ? 'Back to result' : 'Scan more'}
+        </button>
+      </div>
     </ResultPage>
   )
 }
