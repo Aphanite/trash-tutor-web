@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import styles from './ResultPage.module.css'
 
 export function ResultPage({
@@ -14,14 +13,9 @@ export function ResultPage({
         backgroundSize: 'cover', // or 'contain' depending on your needs
       }}
     >
-      <motion.div
-        layout={true}
-        className={`${styles.animatedContainer} ${maximised && styles.maximised}`}
-      >
-        <motion.div className={styles.resultContainer} layout="position">
-          {children}
-        </motion.div>
-      </motion.div>
+      <div className={`${styles.animatedContainer} ${maximised && styles.maximised}`}>
+        <div className={styles.resultContainer}>{children}</div>
+      </div>
     </div>
   )
 }
