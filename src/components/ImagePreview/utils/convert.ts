@@ -1,23 +1,6 @@
 import { OpenAI } from 'openai'
 
 export async function convertAnswer(llmAnswer: string, key: string) {
-  const args = {
-    itemDetected: true,
-    item: 'yellow plastic container',
-    categoryDetected: true,
-    categoryName: 'packaging',
-    reason:
-      'The container is made of plastic and used for transporting mail or packages, and should be recycled in the packaging category if clean and free of hazardous materials.',
-  }
-  //   throw new Error('Not working!')
-
-  if (!args.itemDetected) return { status: 'error', code: 'unidentifiable_object', data: args }
-
-  if (args.itemDetected && !args.categoryDetected)
-    return { status: 'error', code: 'unidentifiable_category', data: args }
-
-  return { status: 'success', data: args }
-
   const openai = new OpenAI({ apiKey: key, dangerouslyAllowBrowser: true })
 
   const completion = await openai.chat.completions.create({
