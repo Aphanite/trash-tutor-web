@@ -67,14 +67,15 @@ export async function convertAnswer(llmAnswer: string, key: string) {
   if (toolCall?.function?.name === 'convert_message_to_json') {
     console.log('Function called!')
     const args = JSON.parse(toolCall.function.arguments)
-    console.log('args', args)
+    const data = { ...args, llmAnswer }
+    console.log('data', data)
 
-    if (!args.itemDetected) return { status: 'error', code: 'unidentifiable_object', data: args }
+    if (!args.itemDetected) return { status: 'error', code: 'unidentifiable_object', data }
 
     if (args.itemDetected && !args.categoryDetected)
-      return { status: 'error', code: 'unidentifiable_category', data: args }
+      return { status: 'error', code: 'unidentifiable_category', data }
 
-    return { status: 'success', data: args }
+    return { status: 'success', data }
   }
 
   console.log('no tool call')
