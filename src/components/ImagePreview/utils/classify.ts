@@ -9,9 +9,8 @@ export async function classify(
   key: string,
 ) {
   try {
-    // const llmAnswer = await classifyImage(uri, location, wasteCategories, key)
-    return await convertAnswer('', key)
-    // console.log('json', json)
+    const llmAnswer = await classifyImage(uri, location, wasteCategories, key)
+    return await convertAnswer(llmAnswer, key)
   } catch (error) {
     console.log(Object.entries(error))
     console.error('Error when classifying: ', error)

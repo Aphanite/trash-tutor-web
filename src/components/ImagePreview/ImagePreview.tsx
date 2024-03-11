@@ -42,19 +42,20 @@ export function ImagePreview({ uri }: { uri: string }) {
       }
     }
 
-    const { status, data, code, source } = result
+    const { status, data, code } = result
 
     if (status === 'success') {
       navigate('success', {
         uri,
         object: data.item,
         categoryName: data.categoryName,
+        reason: data.reason,
       })
     }
 
     if (status === 'error') {
-      const metaData = { code, object: data?.item, source, categories, location }
-      uploadError(uri, metaData)
+      const errorData = { result, metaData: { categories, location } }
+      uploadError(uri, errorData)
 
       navigate('error', { uri, code, object: data?.item })
     }
