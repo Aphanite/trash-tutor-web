@@ -36,7 +36,7 @@ export async function convertAnswer(llmAnswer: string, key: string) {
               },
               categoryDetected: {
                 type: 'boolean',
-                description: 'Indicates if categroy for item was detected',
+                description: 'Indicates if category for item was detected',
               },
               categoryName: {
                 type: 'string',
