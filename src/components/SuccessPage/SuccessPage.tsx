@@ -37,27 +37,20 @@ function SuccessPage({ uri, object, categoryName, reason }: SuccessParams) {
     <ResultPage uri={uri} maximised={isMaximised}>
       <div className={styles.textContainer}>
         <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
-        <h2>
-          {isMaximised ? (
-            <>
-              Category:{' '}
-              <span style={{ color: `var(--${binColor})` }}>{capitalize(categoryName)}</span>
-            </>
-          ) : (
-            capitalize(object)
-          )}
-        </h2>
+        <h2>{capitalize(isMaximised ? categoryName : object)}</h2>
 
         {!isMaximised && (
-          <Label color={binColor} onClick={() => setIsMaximised(true)}>
-            {categoryName.toLowerCase()}
-          </Label>
+          <>
+            <Label color={binColor} onClick={() => setIsMaximised(true)}>
+              {categoryName.toLowerCase()}
+            </Label>
+            <p style={{ marginTop: 'var(--spacing-xs)' }}>{reason}</p>
+          </>
         )}
 
         {isMaximised && (
           <div className={styles.categoryInfoContainer}>
             <div>
-              <p className={styles.question}>What belongs in it?</p>
               <p>{chosenCategory.userDescription || chosenCategory.description}</p>
             </div>
 
@@ -75,8 +68,6 @@ function SuccessPage({ uri, object, categoryName, reason }: SuccessParams) {
           </div>
         )}
       </div>
-
-      {!isMaximised && <p>{reason}</p>}
 
       <div className={styles.buttonContainer}>
         <button
