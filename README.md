@@ -1,6 +1,4 @@
-<a href="https://trashtutor.com/"><img src="src/assets/images/leaves.png" alt="logo" height="200"/></a>
-
-# Trash Tutor
+# Trash <a href="https://trashtutor.com/"><img src="src/assets/images/leaves.png" alt="logo" height="50"/></a> Tutor
 
 [trashtutor.com](https://trashtutor.com)
 
