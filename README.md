@@ -2,6 +2,8 @@
 
 [trashtutor.com](https://trashtutor.com)
 
+<img src="src/assets/images/mockup.webp" alt="Trash Tutor app" height="200"/>
+
 ## What is Trash Tutor?
 
 Trash Tutor is a personal project by [Ena Rajović](https://aphanite.net) designed to explore the use of Large Language Models (LLMs) in a production-ready application.
