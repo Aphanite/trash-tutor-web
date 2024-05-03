@@ -5,8 +5,7 @@
 ## What is Trash Tutor?
 
 Trash Tutor is a personal project by [Ena Rajović](https://aphanite.net) designed to explore the use of Large Language Models (LLMs) in a production-ready application.
-
-It assists users in recycling more effectively by using their device's camera to identify waste items and providing region-specific disposal instructions.
+By taking a picture of an item you wish to dispose of, Trash Tutor will determine the right waste category for it based on local guidelines.
 
 <img src="src/assets/images/mockup.webp" alt="Trash Tutor app" height="500"/>
 
