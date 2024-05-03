@@ -1,4 +1,4 @@
-# <a href="https://trashtutor.com/"><img src="src/assets/images/leaves.png" alt="logo" height="50"/></a> Trash Tutor
+# Trash <img src="src/assets/images/leaves.png" alt="logo" height="30"/> Tutor
 
 [trashtutor.com](https://trashtutor.com)
 
