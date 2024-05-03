@@ -1,8 +1,8 @@
-# Trash <img src="src/assets/images/leaves.png" alt="logo" height="30"/> Tutor
+# Trash Tutor
 
 [trashtutor.com](https://trashtutor.com)
 
-<img src="src/assets/images/mockup.webp" alt="Trash Tutor app" height="200"/>
+<img src="src/assets/images/mockup.webp" alt="Trash Tutor app" height="500"/>
 
 ## What is Trash Tutor?
 
