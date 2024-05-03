@@ -1,4 +1,14 @@
+<a href="https://trashtutor.com/"><img src="./src/assets/images/leaves.png" alt="logo" height="200"/></a>
+
 # Trash Tutor
+
+[trashtutor.com](https://trashtutor.com)
+
+## What is Trash Tutor?
+
+Trash Tutor is a personal project by [Ena Rajović](https://aphanite.net) designed to explore the use of Large Language Models (LLMs) in a production-ready application.
+
+It assists users in recycling more effectively by using their device's camera to identify waste items and providing region-specific disposal instructions.
 
 ## HTTPS
 
