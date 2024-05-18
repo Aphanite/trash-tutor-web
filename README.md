@@ -61,6 +61,8 @@ Contributors welcome! Feel free to open PRs to further improve the project.
 
 #### Possible tasks/improvements
 
-[] Include waste categories for more countries, currently only fixed for Germany and Hungary, for all other countries they are dynamically created
-[] Create data base for waste categories
-[] Improve loading animation for more engaging UX
+- Expand the waste category data in `src/data` by adding entries for more countries, using the appropriate country codes as per Geoapify conventions. Currently, data is statically defined only for Germany and Hungary; for all other nations, it's dynamically generated on request.
+
+- Create a database to store waste categories.
+
+- Improve loading animation to create a more engaging user experience.
