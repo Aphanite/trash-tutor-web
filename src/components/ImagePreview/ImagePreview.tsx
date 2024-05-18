@@ -76,10 +76,19 @@ export function ImagePreview({ uri }: { uri: string }) {
           <div className={styles.loader}></div>
         ) : (
           <>
-            <button className={styles.iconBtn} onClick={() => navigate('camera')}>
+            <button
+              className={styles.iconBtn}
+              onClick={() => navigate('camera')}
+              data-cy="retry-btn"
+            >
               <RotateCcw size={14} />
             </button>
-            <button className={`${styles.iconBtn} ${styles.primary}`} onClick={analyseImage}>
+
+            <button
+              className={`${styles.iconBtn} ${styles.primary}`}
+              onClick={analyseImage}
+              data-cy="accept-btn"
+            >
               <Check size={16} />
             </button>
           </>
