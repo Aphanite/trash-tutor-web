@@ -37,11 +37,8 @@ describe('Full flow', () => {
     cy.contains('Oops!')
     cy.contains("You didn't provide a valid API Key.")
 
-    // cy.window().should(win => {
-    //   const item = win.localStorage.getItem('location')
-    //   cy.log(item)
-    //   // expect(item).to.eq('value')
-    // })
+    cy.get("button:contains('Enter API Key')").click()
+    cy.contains('OpenAI Key')
   })
 })
 
