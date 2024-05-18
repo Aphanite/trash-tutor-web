@@ -36,7 +36,9 @@ function SuccessPage({ uri, object, categoryName, reason }: SuccessParams) {
   return (
     <ResultPage uri={uri} maximised={isMaximised}>
       <div className={styles.textContainer}>
-        <p className={styles.locationInfo}>How to recycle in {location || 'general'}</p>
+        <p className={styles.locationInfo}>
+          How to recycle in {`${location.city}, ${location.country}` || 'general'}
+        </p>
         <h2>{capitalize(isMaximised ? categoryName : object)}</h2>
 
         {!isMaximised && (
@@ -51,14 +53,16 @@ function SuccessPage({ uri, object, categoryName, reason }: SuccessParams) {
         {isMaximised && (
           <div className={styles.categoryInfoContainer}>
             <div>
-              <p>{chosenCategory.userDescription || chosenCategory.description}</p>
+              <p data-cy="category-description">
+                {chosenCategory.userDescription || chosenCategory.description}
+              </p>
             </div>
 
             <div>
               <p className={styles.question}>Where can I dispose of it?</p>
               <div className={styles.disposalInfo}>
                 <MapPin size={16} style={{ color: `var(--${binColor})` }} />
-                <p>
+                <p data-cy="disposal-info">
                   {chosenCategory?.domestic ? 'At domestic bin' : 'At drop-off or collection point'}
                 </p>
               </div>
