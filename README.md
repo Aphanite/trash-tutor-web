@@ -55,6 +55,34 @@ mkcert \
 
 note: change the 192.168.x.x IP
 
+## Testing
+
+Tests are implemented using Cypress for comprehensive end-to-end testing.
+
+#### Running Tests Locally
+
+Start by launching the local test server on port 8080:
+
+```bash
+yarn test
+```
+
+#### Interactive Testing with Cypress
+
+To manually inspect and interact with the tests, open the Cypress Test Runner:
+
+```bash
+yarn cypress open
+```
+
+#### Headless Test Execution
+
+To run tests in the command line:
+
+```bash
+yarn cypress run
+```
+
 ## Contributing
 
 Contributors welcome! Feel free to open PRs to further improve the project.
@@ -66,3 +94,7 @@ Contributors welcome! Feel free to open PRs to further improve the project.
 - Create a database to store waste categories.
 
 - Improve loading animation to create a more engaging user experience.
+
+- Write more cypress tests
+
+- Create GitHub action to run cypress tests in CI
