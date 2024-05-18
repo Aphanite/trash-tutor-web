@@ -1,20 +1,22 @@
 import React from 'react'
 
+export type LocationObject = { city: string; country: string; countryCode: string }
 type GeocodeResult =
   | {
       status: 'success'
-      data: string
+      data: LocationObject
     }
   | { status: 'error'; message: string }
 
 const LocationContext = React.createContext<
-  { location: string | null; fetchLocation: () => void } | undefined
+  { location: LocationObject | null; fetchLocation: () => void } | undefined
 >(undefined)
 
 export function LocationProvider({ children }: React.PropsWithChildren) {
-  const [location, setLocation] = React.useState<string | null>(
-    window.localStorage.getItem('location'),
-  )
+  const [location, setLocation] = React.useState<LocationObject | null>(() => {
+    const locationString = window.localStorage.getItem('location')
+    return locationString ? JSON.parse(locationString) : null
+  })
 
   async function reverseGeocode(latitude: number, longitude: number): Promise<GeocodeResult> {
     const url = `https://worker.trashtutor.com/reverse_geocode?lat=${latitude}&lon=${longitude}`
@@ -49,7 +51,7 @@ export function LocationProvider({ children }: React.PropsWithChildren) {
 
       if (result?.status === 'success') {
         setLocation(result.data)
-        window.localStorage.setItem('location', result.data)
+        window.localStorage.setItem('location', JSON.stringify(result.data))
       }
     } catch (error) {
       console.error('error', error)
@@ -66,7 +68,7 @@ export function LocationProvider({ children }: React.PropsWithChildren) {
 export function useLocation() {
   const location = React.useContext(LocationContext)
   if (location === undefined) {
-    throw new Error('uselocation must be used within a LocationProvider')
+    throw new Error('useLocation must be used within a LocationProvider')
   }
   return location
 }
