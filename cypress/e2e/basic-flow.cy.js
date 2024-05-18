@@ -96,7 +96,7 @@ describe('success screen', () => {
     }).as('fakeOpenAIResponse')
   })
 
-  it.only('correctly renders success screen - new location format', () => {
+  it('correctly renders success screen', () => {
     // assert home screen
     cy.contains('Snap, Scan, Sort')
     cy.get('button.primary').should('contain', 'Start').click()
@@ -116,36 +116,24 @@ describe('success screen', () => {
     // assert preview screen
     cy.get('button[data-cy="accept-btn"]').click()
 
+    // assert result
     cy.contains('How to recycle in Berlin, Germany')
     cy.get('h2:contains("Apple")').should('exist')
-    cy.get('p:contains("household")').should('exist')
+    cy.get('[data-cy="waste-label"]').should('contain', 'household').click()
+
+    // assert category screen
+    cy.get('h2:contains("Household")').should('exist')
+    cy.get('[data-cy="category-description"]').should(
+      'contain',
+      'Unusable or non-recyclable items such as diapers, cigarettes, and vacuum cleaner bags',
+    )
+
+    cy.get('[data-cy="disposal-info"]').should('contain', 'At domestic bin')
   })
 })
-
-// .callsFake(() => {
-//           localStorage.setItem(
-//             'location',
-//             JSON.stringify({ city: 'Berlin', country: 'Germany', countryCode: 'de' }),
-//           )
-//         })
 
 function createFakeKey() {
   const placeholder = 'keyForTesting1234567'
 
   return `sk-${placeholder}T3BlbkFJ${placeholder}`
 }
-
-// cy.intercept('https://worker.trashtutor.com/reverse_geocode?**').as('reverseGeocode')
-
-// cy.visit('https://localhost:8080', {
-//   onBeforeLoad({ navigator }) {
-//     // Košice city
-//     const latitude = 48.71597183246423
-//     const longitude = 21.255670821215418
-//     cy.stub(navigator.geolocation, 'getCurrentPosition').callsArgWith(0, {
-//       coords: { latitude, longitude },
-//     })
-
-//     // cy.get('@reverseGeocode').should('have')
-//   },
-// })

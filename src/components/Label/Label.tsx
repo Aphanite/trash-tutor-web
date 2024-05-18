@@ -18,6 +18,7 @@ export function Label({
         backgroundColor: `var(--${color})`,
       }}
       onClick={onClick}
+      data-cy="waste-label"
     >
       <Trash2 size={16} color="#f8faed" />
       <p className={styles.labelText}>{children}</p>
