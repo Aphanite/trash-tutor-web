@@ -25,7 +25,7 @@ First, include a short reasoning about why this item needs to be disposed of thi
 Finally, finish your answer with: CATEGORY and the name of the waste category.`
 
   const imageCompletion = await openai.chat.completions.create({
-    model: 'gpt-4-vision-preview',
+    model: 'gpt-4o',
     messages: [
       {
         role: 'system',
