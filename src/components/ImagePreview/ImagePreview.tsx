@@ -32,8 +32,8 @@ export function ImagePreview({ uri }: { uri: string }) {
       const categorization = await categorizeWaste(location, key as string)
 
       if (categorization.status === 'success') {
-        categories = categorization.data?.fetchedCategories
-        saveCategories({ [location]: categories })
+        categories = categorization.data
+        saveCategories({ [location.countryCode]: categories })
 
         // Classify image with fetched categories
         result = await classify(uri, location, categories, key as string)

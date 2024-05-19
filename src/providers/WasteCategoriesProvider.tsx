@@ -19,12 +19,9 @@ export function WasteCategoriesProvider({ children }: React.PropsWithChildren) {
   const [categories, setCategories] = React.useState<LocationWasteMap | null>(null)
 
   function getCategories(location: LocationObject | null) {
-    if (location === null) return storedWasteCategories.de
+    if (location === null) return storedWasteCategories.de // german categories as default when no location
 
-    if (location.countryCode === 'de') return storedWasteCategories.de
-    if (location.countryCode === 'hu') return storedWasteCategories.hu
-
-    return categories?.[location.countryCode]
+    return storedWasteCategories[location.countryCode] || categories?.[location.countryCode]
   }
 
   function saveCategories(newCats: LocationWasteMap) {
