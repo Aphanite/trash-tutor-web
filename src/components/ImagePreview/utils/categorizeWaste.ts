@@ -1,11 +1,13 @@
 import { OpenAI } from 'openai'
+import { LocationObject } from '../../../providers/LocationProvider'
 
-export async function categorizeWaste(location: string, key: string) {
+export async function categorizeWaste(location: LocationObject, key: string) {
   const openai = new OpenAI({ apiKey: key, dangerouslyAllowBrowser: true })
 
-  const systemInstruction = `Role: You are an expert in Waste Categorization within the Waste Management System of ${location}.`
-  const categorizationUserInstruction = `What are the waste categories in ${location} and what types of waste are designated for each bin?`
-
+  const systemInstruction = `Role: You are an expert in Waste Categorization within the Waste Management System of ${location.city}, ${location.country}.`
+  const categorizationUserInstruction = `What are the waste categories in ${location.city}, ${location.country} and what types of waste are designated for each bin?`
+  console.log('instruction', systemInstruction)
+  console.log('instruction2', categorizationUserInstruction)
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4-1106-preview',
@@ -26,7 +28,7 @@ export async function categorizeWaste(location: string, key: string) {
           type: 'function',
           function: {
             name: 'save_waste_categories',
-            description: `Use this function to save the waste categories used in ${location}`,
+            description: `Use this function to save the waste categories used in ${location.city}, ${location.country}`,
             parameters: {
               type: 'object',
               properties: {

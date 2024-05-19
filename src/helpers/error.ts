@@ -1,3 +1,4 @@
+import { LocationObject } from '../providers/LocationProvider'
 import { ErrorCodes, WasteCategory } from './types'
 
 export async function uploadError(
@@ -15,7 +16,7 @@ export async function uploadError(
       }
       source?: 'classifyImage' | 'categorizeWaste'
     }
-    metaData: { categories: WasteCategory[]; location: string | null }
+    metaData: { categories: WasteCategory[]; location: LocationObject | null }
   },
 ) {
   try {

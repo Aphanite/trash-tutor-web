@@ -1,10 +1,11 @@
 import { WasteCategory } from '../../../helpers/types'
+import { LocationObject } from '../../../providers/LocationProvider'
 import { classifyImage } from './classifyImage'
 import { convertAnswer } from './convert'
 
 export async function classify(
   uri: string,
-  location: string,
+  location: LocationObject,
   wasteCategories: WasteCategory[],
   key: string,
 ) {

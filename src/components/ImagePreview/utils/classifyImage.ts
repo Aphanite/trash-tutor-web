@@ -1,9 +1,10 @@
 import { OpenAI } from 'openai'
 import { WasteCategory } from '../../../helpers/types'
+import { LocationObject } from '../../../providers/LocationProvider'
 
 export async function classifyImage(
   uri: string,
-  location: string,
+  location: LocationObject,
   wasteCategories: WasteCategory[],
   key: string,
 ) {
@@ -14,7 +15,7 @@ export async function classifyImage(
   })
 
   const systemInstruction = `You are an expert assisting the user with domestic waste sorting.
-The user's location is ${location}.
+The user's location is ${location.city}, ${location.country}.
 The following waste categories are available: ${JSON.stringify(categories)}
 The user uploads a photo of an item and your task is to figure out what exactly the item is made of and select which would be the best waste category to dispose of it.
 In case multiple items are visible on the photo, please choose the biggest one or the most likely one to be thrown into a bin.
