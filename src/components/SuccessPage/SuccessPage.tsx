@@ -24,7 +24,7 @@ function SuccessPage({ uri, object, categoryName, reason }: SuccessParams) {
   const wasteCategories = getCategories(location)
 
   const chosenCategory = wasteCategories?.find(c => {
-    return c.categoryName === categoryName
+    return c.categoryName.toLowerCase() === categoryName
   })
 
   const binColor = chosenCategory?.binColor === 'null' ? 'dark-grey' : chosenCategory?.binColor

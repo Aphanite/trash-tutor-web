@@ -39,7 +39,8 @@ export async function categorizeWaste(location: LocationObject, key: string) {
                     properties: {
                       categoryName: {
                         type: 'string',
-                        description: 'Short name of the waste category, not more than one word',
+                        description:
+                          'Short name of the waste category, not more than one word, lowercase',
                       },
                       binColor: {
                         type: 'string',
