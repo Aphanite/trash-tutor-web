@@ -1,4 +1,5 @@
 import de from './de'
 import hu from './hu'
+import gb from './gb'
 
-export const storedWasteCategories = { de, hu }
+export const storedWasteCategories = { gb, de, hu }
