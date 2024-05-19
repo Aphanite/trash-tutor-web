@@ -89,7 +89,7 @@ Contributors welcome! Feel free to open PRs to further improve the project.
 
 #### Possible tasks/improvements
 
-- Expand the waste category data in `src/data` by adding entries for more countries, using the appropriate country codes as per Geoapify conventions. Currently, data is statically defined only for Germany and Hungary; for all other nations, it's dynamically generated on request.
+- Expand the waste category data in `src/data` by adding entries for more countries, using the appropriate country codes as per Geoapify conventions. Currently, data is statically defined only for United Kingdom, Germany and Hungary; for all other locations, it's dynamically generated on request.
 
 - Create a database to store waste categories.
 
