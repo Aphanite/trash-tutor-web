@@ -6,8 +6,7 @@ export async function categorizeWaste(location: LocationObject, key: string) {
 
   const systemInstruction = `Role: You are an expert in Waste Categorization within the Waste Management System of ${location.city}, ${location.country}.`
   const categorizationUserInstruction = `What are the waste categories in ${location.city}, ${location.country} and what types of waste are designated for each bin?`
-  console.log('instruction', systemInstruction)
-  console.log('instruction2', categorizationUserInstruction)
+
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4o',
