@@ -12,7 +12,7 @@ function ApiKeyPage() {
   const { navigate } = usePage()
 
   function isValid(key: string | null): boolean {
-    return typeof key === 'string' && /^sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20}$/.test(key.trim())
+    return typeof key === 'string' && /^sk-.{20,}/.test(key.trim())
   }
 
   const showError = apiKey.length > 0 && !isValid(apiKey)
